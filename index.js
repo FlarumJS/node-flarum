@@ -74,19 +74,22 @@ app.use(function(err, req, res, next) {
 	});
 });
 
-if (config.mongodb.host && config.mongodb.database &&
-	!config.mongodb.username && !config.mongodb.password) {
-	var mongoUrl = 'mongodb://' + config.mongodb.host + '/' + config.mongodb.database;
-mongoose.connect(mongoUrl);
-} else if (config.mongodb.host && config.mongodb.database &&
-	config.mongodb.username && config.mongodb.password) {
-	var mongoUrl = 'mongodb://' + config.mongodb.username + ':';
-	mongoUrl += config.mongodb.password + '@';
-	mongoUrl += config.mongodb.host + '/' + config.mongodb.database;
+if (config) {
+	if (config.mongodb.host && config.mongodb.database &&
+		!config.mongodb.username && !config.mongodb.password) {
+		var mongoUrl = 'mongodb://' + config.mongodb.host + '/' + config.mongodb.database;
 	mongoose.connect(mongoUrl);
-} else {
-	// No Mongo Config
+	} else if (config.mongodb.host && config.mongodb.database &&
+		config.mongodb.username && config.mongodb.password) {
+		var mongoUrl = 'mongodb://' + config.mongodb.username + ':';
+		mongoUrl += config.mongodb.password + '@';
+		mongoUrl += config.mongodb.host + '/' + config.mongodb.database;
+		mongoose.connect(mongoUrl);
+	} else {
+		// No Mongo Config
+	}
 }
+
 
 db.on('error', function (err) {
 	if (err == 'MongoError: connect ECONNREFUSED') {
