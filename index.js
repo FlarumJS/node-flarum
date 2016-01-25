@@ -5,7 +5,7 @@ var debugError = require('debug')('flarum:error');
 var fs = require('fs');
 
 var routes = require('./lib/routes/index');
-var config = require('./lib/config/config.json');
+// var config = require('./lib/config/config.json');
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -20,8 +20,6 @@ app.set('port', process.env.PORT || 8080);
 hbs.registerPartials(__dirname + '/lib/views/partials');
 app.use(express.static(path.join(__dirname, '/lib/public')));
 
-app.use('/', routes);
-
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
 	err.status = 404;
@@ -30,11 +28,18 @@ app.use(function(req, res, next) {
 
 fs.access(path.join(__dirname + 'lib/config/config.json'), fs.R_OK | fs.W_OK, function (err) {
 	if (err.indexOf('ENOENT') >= 0) {
-		fs.writeFile(__dirname + '/lib/config/config.json' {}, function (err) {
+		fs.writeFile(__dirname + '/lib/config/config.json', '{}', function (err) {
 			if (err) throw err;
-			console.log('[FLARUM] Config File Written!')
-		})
+			console.log('[FLARUM] Config File Written!');
+			app.use('/', routes);
+		});
+	} else if (err) {
+		throw err;
+	} else if (!err) {
+		var config = require('./lib/config/config.json')
+		app.use('/', routes);
 	}
+
 })
 
 // error handlers
