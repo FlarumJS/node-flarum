@@ -32,7 +32,10 @@ fs.exists(__dirname + '/lib/config/config.json', function (exists) {
 			if (err2) throw err;
 			console.log('[FLARUM] Config File Written!');
 
-			config = require('./lib/config/config.json');
+			config = require('./lib/config/config.json')
+
+			connectMongo(config.mongodb);
+
 			routes = require('./lib/routes/index');
 			app.use('/', routes);
 		});
@@ -41,6 +44,7 @@ fs.exists(__dirname + '/lib/config/config.json', function (exists) {
 		routes = require('./lib/routes/index');
 		app.use('/', routes);
 		console.log('Path: ' + routes.path());
+		connectMongo(config.mongodb);
 	}
 
 })
@@ -78,22 +82,6 @@ app.use(function(err, req, res, next) {
 	});
 });
 
-if (config) {
-	if (config.mongodb.host && config.mongodb.database &&
-		!config.mongodb.username && !config.mongodb.password) {
-		var mongoUrl = 'mongodb://' + config.mongodb.host + '/' + config.mongodb.database;
-	mongoose.connect(mongoUrl);
-	} else if (config.mongodb.host && config.mongodb.database &&
-		config.mongodb.username && config.mongodb.password) {
-		var mongoUrl = 'mongodb://' + config.mongodb.username + ':';
-		mongoUrl += config.mongodb.password + '@';
-		mongoUrl += config.mongodb.host + '/' + config.mongodb.database;
-		mongoose.connect(mongoUrl);
-	} else {
-		// No Mongo Config
-	}
-}
-
 
 db.on('error', function (err) {
 	if (err == 'MongoError: connect ECONNREFUSED') {
@@ -102,3 +90,21 @@ db.on('error', function (err) {
 		debugError('[MongoDB] ' + err);
 	}
 });
+
+
+function connectMongo (mongo) {
+	if (mongo) {
+		if (mongo.host && mongo.database && !mongo.username && !mongo.password) {
+			var mongoUrl = 'mongodb://' + mongo.host + '/' + mongo.database;
+			mongoose.connect(mongoUrl);
+		} else if (mongo.host && mongo.database &&
+			mongo.username && mongo.password) {
+			var mongoUrl = 'mongodb://' + mongo.username + ':';
+			mongoUrl += mongo.password + '@';
+			mongoUrl += mongo.host + '/' + mongo.database;
+			mongoose.connect(mongoUrl);
+		} else {
+			// No Mongo Config
+		}
+	}
+}
