@@ -5,24 +5,25 @@ A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
 ## Installation
 
-	npm install node-flarum --save
+```sh
+npm install node-flarum --save
+```
 
 
 ## Usage
 
-	var flarum = require('flarum');
+```node
+var flarum = require('flarum');
 
-	var express = require('express');
-	var app = express();
+var express = require('express');
+var app = express();
 
-	// Other stuff
+// Other stuff
 
-	app.use('/forum', flarum)
+app.use('/forum', flarum)
+```
 
 
-## Tests
-
-	npm test
 
 
 ## Contributing
