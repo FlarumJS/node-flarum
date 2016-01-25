@@ -1,7 +1,8 @@
 var express = require('express');
 var hbs = require('hbs');
-var debug = require('debug')('flarum:init');
+var path = require('path');
 var debugError = require('debug')('flarum:error');
+var fs = require('fs');
 
 var routes = require('./lib/routes/index');
 var config = require('./lib/config/config.json');
@@ -9,7 +10,8 @@ var config = require('./lib/config/config.json');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
-var app = module.exports = express.Router();
+var app = module.exports = express();
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -25,6 +27,15 @@ app.use(function(req, res, next) {
 	err.status = 404;
 	next(err);
 });
+
+fs.access(path.join(__dirname + 'lib/config/config.json'), fs.R_OK | fs.W_OK, function (err) {
+	if (err.indexOf('ENOENT') >= 0) {
+		fs.writeFile(__dirname + '/lib/config/config.json' {}, function (err) {
+			if (err) throw err;
+			console.log('[FLARUM] Config File Written!')
+		})
+	}
+})
 
 // error handlers
 
@@ -68,6 +79,8 @@ mongoose.connect(mongoUrl);
 	mongoUrl += config.mongodb.password + '@';
 	mongoUrl += config.mongodb.host + '/' + config.mongodb.database;
 	mongoose.connect(mongoUrl);
+} else {
+	// No Mongo Config
 }
 
 db.on('error', function (err) {
