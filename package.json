@@ -1,0 +1,36 @@
+{
+	"name": "node-flarum",
+	"version": "0.0.1",
+	"description": "The Flarum forum with NodeJS",
+	"main": "index.js",
+	"scripts": {
+		"test": "make test"
+	}, //
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/datitisev/node-flarum.git"
+	},
+	"keywords": [
+		"flarum",
+		"nodejs",
+		"node",
+		"mongo",
+		"mongodb",
+		"forum"
+	],
+	"author": "David Sevilla Martín (dsevilla192@icloud.com)",
+	"licenses": [
+		{
+			"type": "ISC",
+			"url": "https://github.com/datitisev/node-flarum/blob/master/LICENSE"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/datitisev/node-flarum/issues"
+	},
+	"homepage": "https://github.com/datitisev/node-flarum#readme",
+	"devDependencies": {
+		"chai": "3.4.1",
+		"mocha": "2.3.4"
+	}
+}
