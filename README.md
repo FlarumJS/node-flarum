@@ -1,8 +1,7 @@
 # node-flarum
-==============
 
 *Express Middleware*
-A forum made out of (Flarum)[http://flarum.org]'s design forum with NodeJS
+A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
 ## Installation
 
