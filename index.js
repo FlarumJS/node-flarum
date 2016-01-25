@@ -25,11 +25,35 @@ app.use(function(req, res, next) {
 });
 
 
-fs.exists(__dirname + '/lib/config/config.json', function (exists) {
-	if (!exists) {
-		console.log('File does not exist!')
-		fs.writeFile(__dirname + '/lib/config/config.json', '{}', function (err2) {
-			if (err2) throw err;
+fs.readFile('flarum/config.json', 'utf8', function (err, data) {
+
+	console.log(data);
+
+	if (!err && !data) {
+		fs.writeFile('flarum/config.json', '{}', function (err2) {
+			if (err2) throw err2;
+			console.log('[FLARUM] Config File Set Up!');
+
+			config = require('./lib/config/config.json')
+
+			connectMongo(config.mongodb);
+
+			routes = require('./lib/routes/index');
+			app.use('/', routes);
+		});
+	}
+	if (err == 'Error: ENOENT, open \'flarum/config.json\'') {
+		var error =  new Error('Config File Not Found');
+		debugError('[CONFIG]');
+		debugError(err);
+		console.log('[FLARUM] ' + err);
+		fs.writeFile('flarum/config.json', '{}', function (err2) {
+			if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
+				var error =  new Error('Config File Not Found');
+				debugError('[CONFIG]');
+				debugError(err);
+				return console.log('[FLARUM] ' + err);
+			} else if (err2) throw err2;
 			console.log('[FLARUM] Config File Written!');
 
 			config = require('./lib/config/config.json')
@@ -39,7 +63,12 @@ fs.exists(__dirname + '/lib/config/config.json', function (exists) {
 			routes = require('./lib/routes/index');
 			app.use('/', routes);
 		});
-	} else if (exists) {
+	} else if (err) {
+		var error =  new Error('[FLARUM] ' + err);
+		debugError('[CONFIG]');
+		debugError(err);
+		throw error;
+	} else if (data) {
 		config = require('./lib/config/config.json');
 		routes = require('./lib/routes/index');
 		app.use('/', routes);
