@@ -11,7 +11,7 @@ var db = mongoose.connection;
 var app = module.exports = express();
 
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'lib/views'));
 app.set('view engine', 'hbs');
 app.set('port', process.env.PORT || 8080);
 
