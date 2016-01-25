@@ -3,7 +3,7 @@ var hbs = require('hbs');
 var path = require('path');
 var debugError = require('debug')('flarum:error');
 var fs = require('fs');
-// var config = require('./lib/config/config.json');
+var config, routes;
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -30,13 +30,14 @@ fs.exists(path.join(__dirname + 'lib/config/config.json'), function (exists) {
 		fs.writeFile(__dirname + '/lib/config/config.json', '{}', function (err2) {
 			if (err2) throw err;
 			console.log('[FLARUM] Config File Written!');
-			var routes = require('./lib/routes/index');
+
+			config = require('./lib/config/config.json');
+			routes = require('./lib/routes/index');
 			app.use('/', routes);
 		});
 	} else if (exists) {
-		console.log('File exists!')
-		var config = require('./lib/config/config.json')
-		var routes = require('./lib/routes/index');
+		config = require('./lib/config/config.json');
+		routes = require('./lib/routes/index');
 		app.use('/', routes);
 	}
 
