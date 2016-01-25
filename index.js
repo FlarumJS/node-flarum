@@ -28,14 +28,16 @@ app.use(function(req, res, next) {
 
 fs.access(path.join(__dirname + 'lib/config/config.json'), fs.R_OK | fs.W_OK, function (err) {
 	if (err.indexOf('ENOENT') >= 0) {
-		fs.writeFile(__dirname + '/lib/config/config.json', '{}', function (err) {
-			if (err) throw err;
+		console.log('File does not exist!')
+		fs.writeFile(__dirname + '/lib/config/config.json', '{}', function (err2) {
+			if (err2) throw err;
 			console.log('[FLARUM] Config File Written!');
 			app.use('/', routes);
 		});
 	} else if (err) {
 		throw err;
 	} else if (!err) {
+		console.log('File exists!')
 		var config = require('./lib/config/config.json')
 		app.use('/', routes);
 	}
