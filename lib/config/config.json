@@ -1,0 +1,9 @@
+{
+  "mongodb": {
+    "host": "localhost:27017",
+    "database": "flarumTest",
+    "username": null,
+    "password": null
+  },
+  "installed": true
+}

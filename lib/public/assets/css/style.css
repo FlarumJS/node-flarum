@@ -1,0 +1,213 @@
+.toast {
+	z-index: 999999;
+}
+
+.DiscussionList--List {
+	list-style-type: none;
+}
+
+.DiscussionList--Item .DiscussionListItem-info .item-tags {
+	float: right;
+	margin-top: -12px;
+	margin-right: 0
+}
+
+.App-composer * {
+	-webkit-transition: height .25s ease-in-out, opacity .25s ease-in-out;
+	-moz-transition: height .25s ease-in-out, opacity .25s ease-in-out;
+	-ms-transition: height .25s ease-in-out, opacity .25s ease-in-out;
+	-o-transition: height .25s ease-in-out, opacity .25s ease-in-out;
+	transition: height .25s ease-in-out, opacity .25s ease-in-out;
+}
+
+.App-composer #composer {
+	position: fixed;
+	bottom: 0;
+	width: 75%;
+	left: 12.5%;
+	z-index: 99999;
+	height: 0 !important;
+	overflow: hidden;
+	opacity: 0;
+	-webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.App-composer #composer.show {
+	height: auto !important;
+	opacity: 1;
+}
+
+.App-composer #composer .visible {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.App-composer #composer .visible.minimized {
+	overflow-x: hidden;
+	overflow-y: hidden !important;
+}
+
+.App-composer #composer .visible::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+.App-composer #composer .visible.minimized::-webkit-scrollbar {
+	width: 0em;
+}
+
+.App-composer #composer .visible::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.App-composer #composer .visible::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+}
+
+.App-composer #composer #Composer.minimized {
+	height: 40px !important;
+	opacity: 0.75;
+}
+
+.App-content {
+	border-top: none !important;
+}
+
+
+
+/* PRELOADER */
+
+#preloader {
+	position: absolute;
+	text-align: center;
+	z-index: 999;
+	top:100px;
+	width: 75px;
+	height: 75px;
+	left: 50%;
+	margin-left: -37.5px;
+	margin: 0 auto;
+}
+
+.circular {
+	/*position: absolute;*/
+	/*top: 20%;*/
+	/*left: 50%;*/
+	width: 50px;
+	height: 50px;
+	-webkit-animation: rotate 1.25s linear infinite;
+	animation: rotate 1.25s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.path {
+	stroke-dasharray: 1, 200;
+	stroke-dashoffset: 0;
+	-webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+	animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+	stroke-linecap: round;
+	stroke: #3f88f8;
+}
+
+@-webkit-keyframes dash {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 89, 200;
+		stroke-dashoffset: -35;
+	}
+	100% {
+		stroke-dasharray: 89, 200;
+		stroke-dashoffset: -124;
+	}
+}
+
+@keyframes dash {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 89, 200;
+		stroke-dashoffset: -35;
+	}
+	100% {
+		stroke-dasharray: 89, 200;
+		stroke-dashoffset: -124;
+	}
+}
+
+@-webkit-keyframes color {
+	0% {
+		stroke: #3f88f8;
+	}
+	20% {
+		stroke: #3f88f8;
+	}
+	25% {
+		stroke: #dd413b;
+	}
+	45% {
+		stroke: #dd413b;
+	}
+	50% {
+		stroke: #f6ae2e;
+	}
+	70% {
+		stroke: #f6ae2e;
+	}
+	75% {
+		stroke: #259a5d;
+	}
+	95% {
+		stroke: #259a5d;
+	}
+}
+
+@keyframes color {
+	0% {
+		stroke: #3f88f8;
+	}
+	20% {
+		stroke: #3f88f8;
+	}
+	25% {
+		stroke: #dd413b;
+	}
+	45% {
+		stroke: #dd413b;
+	}
+	50% {
+		stroke: #f6ae2e;
+	}
+	70% {
+		stroke: #f6ae2e;
+	}
+	75% {
+		stroke: #259a5d;
+	}
+	95% {
+		stroke: #259a5d;
+	}
+}

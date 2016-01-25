@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>{{discussion.title}}</h2>
+  <div>
+    {{#each discussion.post}}
+    <div>
+      <h3>{{username}}</h3>
+      <div class="Post-body">
+        {{content}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

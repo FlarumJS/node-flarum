@@ -1,0 +1,106 @@
+<style>
+	@import url(http://fonts.googleapis.com/css?family=Raleway:700);
+	*, *:before, *:after {
+		box-sizing: border-box;
+	}
+
+	body {
+		/*background: url(http://i.imgur.com/76NZB7A.gif) no-repeat center center fixed;*/
+		background-size: cover;
+		font-family: 'Raleway', sans-serif;
+		background-color: #342643;
+		height: 100vh;
+		width: 100vw;
+		position: fixed;
+	}
+
+	.text-wrapper {
+		height: 100%;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+
+	.title {
+		font-size: 6em;
+		font-weight: 700;
+		color: #EE4B5E;
+	}
+
+	.subtitle {
+		font-size: 40px;
+		font-weight: 700;
+		color: #1FA9D6;
+	}
+
+	.subtitle pre {
+		font-size: 14px;
+		max-width: 90vw;
+		overflow: scroll;
+	}
+
+	.buttons {
+		margin: 30px;
+		z-index: 9999;
+	}
+	.buttons a.button {
+		font-weight: 700;
+		border: 2px solid #EE4B5E;
+		text-decoration: none;
+		padding: 15px;
+		text-transform: uppercase;
+		color: #EE4B5E;
+		border-radius: 26px;
+		-webkit-transition: all 0.2s ease-in-out;
+		transition: all 0.2s ease-in-out;
+	}
+	.buttons a.button:hover {
+		background-color: #EE4B5E;
+		color: white;
+		-webkit-transition: all 0.2s ease-in-out;
+		transition: all 0.2s ease-in-out;
+	}
+</style>
+
+{{!-- <h1>{{message}}</h1> --}}
+{{!-- <h2>{{error.status}}</h2> --}}
+{{!-- <pre>{{error.stack}}</pre> --}}
+
+<div class="text-wrapper">
+	<div class="title" data-content="404">
+		{{error.status}}
+	</div>
+
+	<div class="subtitle">
+		{{#if notFound}}
+		Oops, the page you're looking for doesn't exist.
+		{{/if}}
+		{{#if serverError}}
+		Internal Server Error. Please come back later.
+		{{/if}}
+	</div>
+
+	<div class="subtitle">
+		<pre>
+			{{error.stack}}
+		</pre>
+	</div>
+
+	<div class="buttons">
+		<a class="button" href="/">Go to homepage</a>
+	</div>
+</div>

@@ -1,0 +1,114 @@
+<div class="App">
+
+	<div class="App-navigation"></div>
+
+	<div class="App-drawer">
+
+		<header class="App-header">
+			<div class="Header-navigation"></div>
+			<div class="container">
+				<h1 class="Header-title">
+					<a href="/" class="home-link">{{forum.title}}</a>
+				</h1>
+				<div class="Header-primary"></div>
+				<div class="Header-secondary"></div>
+			</div>
+		</header>
+
+	</div>
+
+	<div class="App-content">
+		<div id="content">
+			<header class="Hero WelcomeHero">
+				<div class="container">
+					<button class="Hero-close Button Button--icon Button--link hasIcon" type="button">
+						<i class="icon fa fa-fw fa-times Button-icon"></i>
+					</button>
+					<div class="containerNarrow">
+						<h2 class="Hero-title">{{welcomeBanner.title}}</h2>
+						<div class="Hero-subtitle">{{welcomeBanner.description}}</div>
+					</div>
+				</div>
+			</header>
+			<div class="container" ng-controller="DiscussionListController as discussionList">
+				<nav class="IndexPage-nav sideNav" ng-controller="IndexSideNavController as IndexSideNav">
+					<div class="App-composer">
+						<div class="container">
+							{{> newDiscussion}}
+						</div>
+					</div>
+					<ul>
+						<li class="item-newDiscussion App-primaryControl">
+							<button class="Button Button--primary IndexPage-newDiscussion hasIcon" itemclassname="App-primaryControl" type="button" ng-click="IndexSideNav.showNewDiscussionView()">
+								<i class="icon fa fa-fw fa-edit Button-icon"></i>
+								<span class="Button-label">Start a Discussion</span>
+							</button>
+						</li>
+						<li class="item-nav">
+							<div class="ButtonGroup Dropdown dropdown App-titleControl Dropdown--select itemCount6">
+								<button class="Dropdown-toggle Button" data-toggle="dropdown"><span class="Button-label">All Discussions</span><i class="icon fa fa-fw fa-sort Button-caret"></i>
+								</button>
+								<ul class="Dropdown-menu dropdown-menu ">
+									<li class="item-allDiscussions active"><a href="/" active="true" class=" hasIcon" type="button"><i class="icon fa fa-fw fa-comments-o Button-icon"></i><span class="Button-label">All Discussions</span></a>
+									</li>
+									<li class="item-following"><a href="/following" active="false" class=" hasIcon" type="button"><i class="icon fa fa-fw fa-star Button-icon"></i><span class="Button-label">Following</span></a>
+									</li>
+									<li class="item-tags"><a href="/tags" active="false" class=" hasIcon" type="button"><i class="icon fa fa-fw fa-th-large Button-icon"></i><span class="Button-label">Tags</span></a>
+									</li>
+									<li class="Dropdown-separator"></li>
+									<li class="item-tag1"><a class="TagLinkButton hasIcon " href="/t/general" style="" title=""><span class="icon TagIcon Button-icon" style="background-color: rgb(136, 136, 136);"></span>General</a>
+									</li>
+									{{!-- </li> --}}
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+				<div class="IndexPage-results sideNavOffset">
+					<div class="IndexPage-toolbar">
+						<ul class="IndexPage-toolbar-view">
+							<li class="item-sort"><span class="Select"><select class=
+								"Select-input FormControl">
+								<option value="latest">
+									Latest
+								</option>
+								<option value="top">
+									Top
+								</option>
+								<option value="newest">
+									Newest
+								</option>
+								<option value="oldest">
+									Oldest
+								</option>
+							</select><i class="icon fa fa-fw fa-sort Select-caret"></i></span></li>
+						</ul>
+						<ul class="IndexPage-toolbar-action">
+							<li class="item-refresh">
+								<button class="Button Button--icon hasIcon" title="Refresh" type="button" ng-click="discussionList.getDiscussions()">
+									<i class= "icon fa fa-fw fa-refresh Button-icon"></i>
+								</button>
+							</li>
+							<li class="item-markAllAsRead">
+								<button class= "Button Button--icon hasIcon" title="Mark All as Read" type= "button">
+									<i class= "icon fa fa-fw fa-check Button-icon"></i>
+								</button>
+							</li>
+						</ul>
+					</div>
+					<div class="DiscussionList">
+						{{> discussionList}}
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		{{!-- <div class="App-composer">
+			<div class="container">
+				{{> newDiscussion}}
+			</div>
+		</div> --}}
+	</div>
+
+</div>

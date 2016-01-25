@@ -1,0 +1,300 @@
+<main class="App-content" ng-controller="DiscussionViewController as discussion">
+	<div id="content">
+		<div class="DiscussionPage">
+			<div class="DiscussionPage-discussion">
+				<header class="Hero DiscussionHero DiscussionHero--colored" style="background-color: rgb(136, 136, 136);">
+					<div class="container">
+						<ul class="DiscussionHero-items">
+							<li class="item-badges">
+								<ul class="DiscussionHero-badges badges">
+									<li class="item-sticky"><span class="Badge Badge--sticky" data-original-title="Sticky" title="Sticky"><i class="icon fa fa-fw fa-thumb-tack Badge-icon"></i></span></li>
+								</ul>
+							</li>
+							<ul>
+								<li class="item-tags" ng-show="discussion.tags">
+									<span class="TagsLabel">
+										<a class="TagLabel colored" ng-repeat="tag in discussion.tags" href="[[tag.slug]]" style="color: [[tag.color]] background-color: [[tag.color]]" title="[[tag.info]]">
+											<span class="TagLabel-text">hi [[tag.label]]</span>
+										</a>
+										{{!-- <a class="TagLabel colored" href="/t/news" style="color: rgb(0, 255, 0); background-color: rgb(0, 255, 0);" title="News / Updates of Cookie Clicker (versions)">
+											<span class="TagLabel-text">News</span>
+										</a> --}}
+									</span>
+								</li>
+							</ul>
+							<li class="item-title">
+								<h2 class="DiscussionHero-title">hi[[discussion.title]]</h2>
+							</li>
+						</ul>
+					</div>
+				</header>
+				<div class="container">
+					<nav class="DiscussionPage-nav">
+						<ul>
+							<li class="item-controls">
+								<div class="ButtonGroup Dropdown dropdown App-primaryControl Dropdown--split itemCount8">
+									<button class="SplitDropdown-button Button Button--primary hasIcon" type="button"><i class="icon fa fa-fw fa-reply Button-icon"></i><span class="Button-label">Reply</span></button><button class="Dropdown-toggle Button Button--icon Button--primary" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-v Button-icon"></i><i class="icon fa fa-fw fa-caret-down Button-caret"></i></button>
+									<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+										<li class="item-reply">
+											<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-reply Button-icon"></i><span class="Button-label">Reply</span></button>
+										</li>
+										<li class="Dropdown-separator"></li>
+										<li class="item-rename">
+											<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-pencil Button-icon"></i><span class="Button-label">Rename</span></button>
+										</li>
+										<li class="item-lock">
+											<button class=" hasIcon" type="button">
+												<i class="icon fa fa-fw fa-lock Button-icon"></i>
+												<span class="Button-label" ng-hide="discussion.lock">Lock</span>
+												<span class="Button-label" ng-show="discussion.lock">Unlock</span>
+											</button>
+										</li>
+										<li class="item-sticky">
+											<button class=" hasIcon" type="button">
+												<i class="icon fa fa-fw fa-thumb-tack Button-icon"></i>
+												<span class="Button-label" ng-hide="discussion.sticky">Sticky</span>
+												<span class="Button-label" ng-show="discussion.sticky">Unsticky</span>
+											</button>
+										</li>
+										<li class="item-tags">
+											<button class=" hasIcon" type="button">
+												<i class="icon fa fa-fw fa-tag Button-icon"></i>
+												<span class="Button-label">Edit Tags</span>
+											</button>
+										</li>
+										<li class="Dropdown-separator"></li>
+										<li class="item-hide">
+											<button class=" hasIcon" type="button">
+												<i class="icon fa fa-fw fa-trash-o Button-icon"></i>
+												<span class="Button-label">Delete</span>
+											</button>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="item-subscription">
+								<div class="Dropdown ButtonGroup SubscriptionMenu">
+									<button class="Button SubscriptionMenu-button SubscriptionMenu-button--false hasIcon" data-original-title="" title="" type="button"><i class="icon fa fa-fw fa-star-o Button-icon"></i><span class="Button-label">Follow</span></button><button class="Dropdown-toggle Button Button--icon SubscriptionMenu-button--false" data-toggle="dropdown"><i class="icon fa fa-fw fa-caret-down Button-icon"></i></button>
+									<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+										<li><button class="SubscriptionMenuItem hasIcon"><i class="icon fa fa-fw fa-check Button-icon"></i><span class="SubscriptionMenuItem-label"><i class="icon fa fa-fw fa-star-o Button-icon"></i><strong>Not Following</strong><span class="SubscriptionMenuItem-description">Be notified only when @mentioned.</span></span></button></li>
+										<li><button class="SubscriptionMenuItem hasIcon"><span class="SubscriptionMenuItem-label"><i class="icon fa fa-fw fa-star Button-icon"></i><strong>Following</strong><span class="SubscriptionMenuItem-description">Be notified of all replies.</span></span></button></li>
+										<li><button class="SubscriptionMenuItem hasIcon"><span class="SubscriptionMenuItem-label"><i class="icon fa fa-fw fa-eye-slash Button-icon"></i><strong>Ignoring</strong><span class="SubscriptionMenuItem-description">Never be notified. Hide from the discussion list.</span></span></button></li>
+									</ul>
+								</div>
+							</li>
+							<li class="item-scrubber">
+								<div class="PostStreamScrubber Dropdown App-titleControl">
+									<button class="Button Dropdown-toggle" data-toggle="dropdown"><span class="Scrubber-index">0</span> of <span class="Scrubber-count">4</span> posts <i class="icon fa fa-fw fa-sort"></i></button>
+									<div class="Dropdown-menu dropdown-menu">
+										<div class="Scrubber">
+											<a class="Scrubber-first"><i class="icon fa fa-fw fa-angle-double-up"></i> Original Post</a>
+											<div class="Scrubber-scrollbar" style="cursor: pointer; -webkit-user-select: none;">
+												<div class="Scrubber-before" style="height: 0%;"></div>
+												<div class="Scrubber-handle" style="cursor: move; height: 25%;">
+													<div class="Scrubber-bar"></div>
+													<div class="Scrubber-info">
+														<strong><span class="Scrubber-index">0</span> of <span class="Scrubber-count">4</span> posts</strong><span class="Scrubber-description"></span>
+													</div>
+												</div>
+												<div class="Scrubber-after" style="height: 75%;"></div>
+												<div class="Scrubber-unread" style="top: 100%; height: 0%;">
+													unread
+												</div>
+											</div><a class="Scrubber-last"><i class="icon fa fa-fw fa-angle-double-down"></i> Now</a>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</nav>
+					<div class="DiscussionPage-stream">
+						<div class="PostStream">
+							<div class="PostStream-item" data-id="4" data-index="0" data-number="1" data-time="2016-01-18T16:56:55.000Z" style="display: block;">
+								<article class="Post CommentPost">
+									<div>
+										<header class="Post-header">
+											<ul>
+												<li class="item-user">
+													<div class="PostUser">
+														<h3><a href="/u/datitisev"><span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="username">datitisev</span></a></h3>
+														<ul class="PostUser-badges badges">
+															<li class="item-group1"><span class="Badge Badge--group--Admin" data-original-title="Admin" style="background-color: rgb(183, 42, 42);" title=""><i class="icon fa fa-fw fa-wrench Badge-icon"></i></span></li>
+														</ul>
+													</div>
+												</li>
+												<li class="item-meta">
+													<div class="Dropdown PostMeta">
+														<a class="Dropdown-toggle" data-toggle="dropdown"><time data-humantime="true" datetime="2016-01-18T11:56:55-05:00" pubdate="true" title="Monday, January 18, 2016 11:56 AM">5 days ago</time></a>
+														<div class="Dropdown-menu dropdown-menu">
+															<span class="PostMeta-number">Post #1</span> <time datetime="2016-01-18T11:56:55-05:00" pubdate="true">Monday, January 18, 2016 11:56 AM</time><input class="FormControl PostMeta-permalink">
+														</div>
+													</div>
+												</li>
+											</ul>
+										</header>
+										<div class="Post-body">
+											<p>izduyfghasjfgsafjksagfdjkhsagfjksahfgizduyfghasjfgsafjksagfdjkhsagfjksahfgizduyfghasjfgsafjksagfdjkhsagfjksahfgizduyfghasjfgsafjksagfdjkhsagfjksahfg</p>
+										</div>
+										<aside class="Post-actions">
+											<ul>
+												<li class="item-like"><button class="Button Button--link" type="button"><span class="Button-label">Like</span></button></li>
+												<li class="item-reply"><button class="Button Button--link" type="button"><span class="Button-label">Reply</span></button></li>
+												<li>
+													<div class="ButtonGroup Dropdown dropdown Post-controls itemCount3">
+														<button class="Dropdown-toggle Button Button--icon Button--flat" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-h Button-icon"></i><span class="Button-label"></span><i class="icon fa fa-fw fa-caret-down Button-caret"></i></button>
+														<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+															<li class="item-edit"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-pencil Button-icon"></i><span class="Button-label">Edit</span></button></li>
+															<li class="Dropdown-separator"></li>
+															<li class="item-hide"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-trash-o Button-icon"></i><span class="Button-label">Delete</span></button></li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</aside>
+										<footer class="Post-footer">
+											<ul>
+												<li class="item-replies">
+													<div class="Post-mentionedBy">
+														<span class="Post-mentionedBy-summary"><i class="icon fa fa-fw fa-reply"></i><a data-number="4" href="/d/4-asoydfiuhj-n/4">You</a> replied to this.</span>
+														<ul class="Dropdown-menu Post-mentionedBy-preview fade"></ul>
+													</div>
+												</li>
+											</ul>
+										</footer>
+									</div>
+								</article>
+							</div>
+							<div class="PostStream-item" data-id="6" data-index="1" data-number="3" data-time="2016-01-19T14:20:53.000Z" style="display: block;">
+								<article class="Post EventPost DiscussionStickiedPost">
+									<div>
+										<i class="icon fa fa-fw fa-thumb-tack EventPost-icon"></i>
+										<div class="EventPost-info">
+											<a class="EventPost-user" href="/u/datitisev"><span class="username">datitisev</span></a> stickied the discussion.
+										</div>
+										<aside class="Post-actions">
+											<ul>
+												<li>
+													<div class="ButtonGroup Dropdown dropdown Post-controls itemCount1">
+														<button class="Dropdown-toggle Button Button--icon Button--flat" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-h Button-icon"></i><span class="Button-label"></span><i class="icon fa fa-fw fa-caret-down Button-caret"></i></button>
+														<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+															<li class="item-delete"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-times Button-icon"></i><span class="Button-label">Delete Forever</span></button></li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</aside>
+										<footer class="Post-footer">
+											<ul></ul>
+										</footer>
+									</div>
+								</article>
+							</div>
+							<div class="PostStream-item" data-id="7" data-index="2" data-number="4" data-time="2016-01-19T21:32:56.000Z" style="display: block;">
+								<article class="Post CommentPost">
+									<div>
+										<header class="Post-header">
+											<ul>
+												<li class="item-user">
+													<div class="PostUser">
+														<h3><a href="/u/datitisev"><span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="username">datitisev</span></a></h3>
+														<ul class="PostUser-badges badges">
+															<li class="item-group1"><span class="Badge Badge--group--Admin" data-original-title="Admin" style="background-color: rgb(183, 42, 42);" title=""><i class="icon fa fa-fw fa-wrench Badge-icon"></i></span></li>
+														</ul>
+													</div>
+												</li>
+												<li class="item-meta">
+													<div class="Dropdown PostMeta">
+														<a class="Dropdown-toggle" data-toggle="dropdown"><time data-humantime="true" datetime="2016-01-19T16:32:56-05:00" pubdate="true" title="Tuesday, January 19, 2016 4:32 PM">4 days ago</time></a>
+														<div class="Dropdown-menu dropdown-menu">
+															<span class="PostMeta-number">Post #4</span> <time datetime="2016-01-19T16:32:56-05:00" pubdate="true">Tuesday, January 19, 2016 4:32 PM</time><input class="FormControl PostMeta-permalink">
+														</div>
+													</div>
+												</li>
+											</ul>
+										</header>
+										<div class="Post-body">
+											<p><a class="PostMention" data-id="4" href="/d/4/2">test</a> LOLOLOLOOLOLO HA AHA HA</p>
+										</div>
+										<aside class="Post-actions">
+											<ul>
+												<li class="item-like"><button class="Button Button--link" type="button"><span class="Button-label">Like</span></button></li>
+												<li class="item-reply"><button class="Button Button--link" type="button"><span class="Button-label">Reply</span></button></li>
+												<li>
+													<div class="ButtonGroup Dropdown dropdown Post-controls itemCount3">
+														<button class="Dropdown-toggle Button Button--icon Button--flat" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-h Button-icon"></i><span class="Button-label"></span><i class="icon fa fa-fw fa-caret-down Button-caret"></i></button>
+														<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+															<li class="item-edit"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-pencil Button-icon"></i><span class="Button-label">Edit</span></button></li>
+															<li class="Dropdown-separator"></li>
+															<li class="item-hide"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-trash-o Button-icon"></i><span class="Button-label">Delete</span></button></li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</aside>
+										<footer class="Post-footer">
+											<ul></ul>
+										</footer>
+									</div>
+									<ul class="Dropdown-menu PostMention-preview fade"></ul>
+								</article>
+							</div>
+							<div class="PostStream-item" data-id="8" data-index="3" data-number="5" data-time="2016-01-22T00:56:03.000Z" style="display: block;">
+								<article class="Post EventPost DiscussionTaggedPost">
+									<div>
+										<i class="icon fa fa-fw fa-tag EventPost-icon"></i>
+										<div class="EventPost-info">
+											<a class="EventPost-user" href="/u/datitisev"><span class="username">datitisev</span></a> added the <span class="TagsLabel"><a class="TagLabel colored" href="/t/news" style="color: rgb(0, 255, 0); background-color: rgb(0, 255, 0);" title="News / Updates of Cookie Clicker (versions)"><span class="TagLabel-text">News</span></a></span> tag.
+										</div>
+										<aside class="Post-actions">
+											<ul>
+												<li>
+													<div class="ButtonGroup Dropdown dropdown Post-controls itemCount1">
+														<button class="Dropdown-toggle Button Button--icon Button--flat" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-h Button-icon"></i><span class="Button-label"></span><i class="icon fa fa-fw fa-caret-down Button-caret"></i></button>
+														<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+															<li class="item-delete"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-times Button-icon"></i><span class="Button-label">Delete Forever</span></button></li>
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</aside>
+										<footer class="Post-footer">
+											<ul></ul>
+										</footer>
+									</div>
+								</article>
+							</div>
+							<div class="PostStream-item">
+								<article class="Post ReplyPlaceholder">
+									<header class="Post-header">
+										<span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> Write a Reply...
+									</header>
+								</article>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="flarum-loading" style="display: none;">
+		Loading...
+	</div>
+	<noscript>
+		&lt;div class="Alert"&gt; &lt;div class="container"&gt; This site is best viewed in a modern browser with JavaScript enabled. &lt;/div&gt; &lt;/div&gt; &lt;div class="container"&gt; &lt;h2&gt;asoydfiuhj,n&lt;/h2&gt; &lt;div&gt; &lt;div&gt; &lt;h3&gt;datitisev&lt;/h3&gt; &lt;div class="Post-body"&gt; &lt;p&gt;izduyfghasjfgsafjksagfdjkhsagfjksahfgizduyfghasjfgsafjksagfdjkhsagfjksahfgizduyfghasjfgsafjksagfdjkhsagfjksahfgizduyfghasjfgsafjksagfdjkhsagfjksahfg&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;hr&gt; &lt;div&gt; &lt;h3&gt;datitisev&lt;/h3&gt; &lt;div class="Post-body"&gt; &lt;p&gt;&lt;a href="/d/4/2" class="PostMention" data-id="4"&gt;test&lt;/a&gt; LOLOLOLOOLOLO HA AHA HA&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;hr&gt; &lt;/div&gt; &lt;/div&gt;
+	</noscript>
+	<div class="App-composer">
+		<div class="container">
+			<div id="composer">
+				<div class="Composer" style="height: 307px; display: none; bottom: -307px;">
+					<div class="Composer-handle" style="cursor: row-resize;"></div>
+					<ul class="Composer-controls">
+						<li class="item-minimize App-backControl"><button class="Button Button--icon Button--link hasIcon" title="Minimize" type="button"><i class="icon fa fa-fw fa-minus minimize Button-icon"></i></button></li>
+						<li class="item-fullScreen"><button class="Button Button--icon Button--link hasIcon" title="Full Screen" type="button"><i class="icon fa fa-fw fa-expand Button-icon"></i></button></li>
+						<li class="item-close"><button class="Button Button--icon Button--link hasIcon" title="Close" type="button"><i class="icon fa fa-fw fa-times Button-icon"></i></button></li>
+					</ul>
+					<div class="Composer-content"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

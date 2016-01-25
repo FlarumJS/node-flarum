@@ -1,0 +1,84 @@
+<div class="DiscussionList-discussions">
+	<div id="preloader" ng-hide="discussionList.loaded">
+		<svg class="circular" height="50" width="50">
+			<circle class="path" cx="25" cy="25.2" r="19.9" fill="none" stroke-width="6" stroke-miterlimit="10" />
+		</svg>
+	</div>
+	<ul ng-hide="discussionList.noDiscussions" class="DiscussionList--List">
+		<li ng-repeat="discussion in discussionList.discussions" data-id="[[discussion.id]]" ng-cloak class="DiscussionList--Item">
+			<div class="DiscussionListItem">
+				<div class="ButtonGroup Dropdown dropdown DiscussionListItem-controls itemCount8">
+					<button class="Dropdown-toggle Button Button--icon Button--flat Slidable-underneath Slidable-underneath--right" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-v Button-icon"></i><span class="Button-label"></span><i class="icon fa fa-fw fa-caret-down Button-caret"></i>
+					</button>
+					<ul class="Dropdown-menu dropdown-menu ">
+						<li class="item-subscription">
+							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-star Button-icon"></i><span class="Button-label">Follow</span>
+							</button>
+						</li>
+						<li class="Dropdown-separator"></li>
+						<li class="item-rename">
+							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-pencil Button-icon"></i><span class="Button-label">Rename</span>
+							</button>
+						</li>
+						<li class="item-lock">
+							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-lock Button-icon"></i><span class="Button-label">Lock</span>
+							</button>
+						</li>
+						<li class="item-sticky">
+							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-thumb-tack Button-icon"></i><span class="Button-label">Sticky</span>
+							</button>
+						</li>
+						<li class="item-tags">
+							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-tag Button-icon"></i><span class="Button-label">Edit Tags</span>
+							</button>
+						</li>
+						<li class="Dropdown-separator"></li>
+						<li class="item-hide">
+							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-trash-o Button-icon"></i><span class="Button-label">Delete</span>
+							</button>
+						</li>
+					</ul>
+				</div>
+				<a class="Slidable-underneath Slidable-underneath--left Slidable-underneath--elastic disabled">
+					<i class="icon fa fa-fw fa-check "></i>
+				</a>
+				<div class="DiscussionListItem-content Slidable-content read">
+					<a href="/u/[[discussion.start_username]]" class="DiscussionListItem-author" title="" data-original-title="[[discussion.start_username]] started [[discussion.start_time]]"><span class="Avatar " style="background: rgb(175, 160, 229);">[[discussion.start_username | limitTo : 1 | uppercase]]</span></a>
+					<ul class="DiscussionListItem-badges badges"></ul>
+					<a href="/d/[[discussion.slug]]" class="DiscussionListItem-main">
+						<h3 class="DiscussionListItem-title">[[discussion.title]]</h3>
+						<ul class="DiscussionListItem-info">
+							<li class="item-tags">
+							{{!-- [[discussion.tags]] --}}
+								<span class="TagsLabel ">
+									<span class="TagLabel  colored" ng-repeat="tag in discussion.tags" style="color: [[tag.color]]; background-color: [[tag.color]]">
+										<span class="TagLabel-text">[[tag.label]]</span>
+									</span>
+								</span>
+							</li>
+							<li class="item-terminalPost">
+								<span ng-hide="discussion.replyCount > 0">
+									<span class="username">
+										[[discussion.start_username]]
+									</span> started
+									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.start_time]]" data-humantime="true">[[discussion.start_time]]</time>
+								</span>
+								<span ng-show="discussion.replyCount > 0">
+									<i class="icon fa fa-fw fa-reply "></i>
+									<span class="username">
+										[[discussion.last_username]]
+									</span> replied
+									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.last_time]]" data-humantime="true">[[discussion.last_time]]</time>
+								</span>
+							</li>
+						</ul>
+					</a>
+					<span class="DiscussionListItem-count" title="">[[discussion.replyCount]]</span>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div ng-show="discussionList.noDiscussions" class="Placeholder">
+		<p>Looks like there are no discussions here. Why don't you create a new one?</p>
+	</div>
+</div>

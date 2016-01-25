@@ -1,0 +1,79 @@
+<div id="composer" class="NewDiscussion" ng-class="IndexSideNav.composerClass">
+	<div class="Composer visible" ng-class="IndexSideNav.composerDivClass">
+		<div class="Composer-handle" style="cursor: row-resize;"></div>
+		<ul class="Composer-controls">
+			<li class="item-minimize App-backControl">
+				<button class="Button Button--icon Button--link hasIcon" title="Minimize" type="button" ng-click="IndexSideNav.hideNewDiscussion = true; IndexSideNav.composerDivClass = 'minimized'" ng-hide="IndexSideNav.hideNewDiscussion">
+					<i class="icon fa fa-fw fa-minus minimize Button-icon"></i>
+				</button>
+			</li>
+			<li class="item-fullScreen"><button class=
+				"Button Button--icon Button--link hasIcon" ng-hide="IndexSideNav.hideNewDiscussion" title="Full Screen" type=
+				"button"><i class="icon fa fa-fw fa-expand Button-icon"></i></button>
+			</li>
+			<li class="item-close"><button class=
+				"Button Button--icon Button--link hasIcon" title="Close" type=
+				"button" ng-click="IndexSideNav.closeNewDiscussionView()"><i class="icon fa fa-fw fa-times Button-icon"></i></button>
+			</li>
+		</ul>
+		<div class="Composer-content" ng-click="IndexSideNav.hideNewDiscussion = false; IndexSideNav.composerDivClass = ' '">
+			<div class="ComposerBody">
+				<span class="Avatar ComposerBody-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">[[IndexSideNav.username | limitTo : 1 | uppercase]]</span>
+				<div class="ComposerBody-content">
+					<ul class="ComposerBody-header">
+						<li class="item-tags">
+							<a class="DiscussionComposer-changeTags"><span class=
+								"TagLabel untagged">Choose Tags</span>
+							</a>
+						</li>
+						<li class="item-title">
+							<h3><input class="FormControl" ng-model="IndexSideNav.newDiscussionTitle" placeholder="Discussion Title"></h3>
+						</li>
+					</ul>
+					<div class="ComposerBody-editor" ng-hide="IndexSideNav.hideNewDiscussion">
+						<div class="TextEditor">
+							<textarea class="FormControl TextEditor-flexible" data-gramm=""
+							data-txt_gramm_id="9aafd5da-b817-9ab8-3196-5bdb5d54994a" placeholder="Write a Post..." id="NewDiscussionContent" ng-model="IndexSideNav.newDiscussionContent" style="height: 189px;"></textarea>
+							<div class="ComposerBody-mentionsDropdownContainer"></div>
+							<ul class="TextEditor-controls">
+								<li class="item-submit"><button class="Button Button--primary hasIcon"
+									type="button"><i class=
+									"icon fa fa-fw fa-check Button-icon"></i><span class=
+									"Button-label">Post Discussion</span></button>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="LoadingIndicator ComposerBody-loading">
+					<div class="spinner" role="progressbar" style="position: absolute; width: 0px; z-index: auto; left: 50%; top: 50%;">
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-0-8 1s linear infinite; animation: opacity-100-25-0-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(0deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-1-8 1s linear infinite; animation: opacity-100-25-1-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(45deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-2-8 1s linear infinite; animation: opacity-100-25-2-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(90deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-3-8 1s linear infinite; animation: opacity-100-25-3-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(135deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-4-8 1s linear infinite; animation: opacity-100-25-4-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(180deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-5-8 1s linear infinite; animation: opacity-100-25-5-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(225deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-6-8 1s linear infinite; animation: opacity-100-25-6-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(270deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-7-8 1s linear infinite; animation: opacity-100-25-7-8 1s linear infinite;">
+							<div style="position: absolute; width: 7px; height: 3px; background-color: rgb(112, 146, 169); -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 1px; transform-origin: 0% 50%; transform: rotate(315deg) translate(5px, 0px); border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+						</div>
+					</div>&nbsp;
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

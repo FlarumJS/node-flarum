@@ -1,0 +1,78 @@
+<div class="App App--discussion affix">
+	<div class="App-navigation">
+		<div class="Navigation ButtonGroup App-backControl">
+			<a class="Button Navigation-back  hasIcon" href="/" active="false" type="button">
+				<i class="icon fa fa-fw fa-chevron-left Button-icon"></i>
+				<span class="Button-label">
+					<i class="icon fa fa-fw fa-bars "></i>
+				</span>
+			</a>
+		</div>
+
+
+	</div>
+
+	<div class="App-drawer">
+
+		<header class="App-header" id="header">
+			<div class="Header-navigation" id="header-navigation">
+				<div class="Navigation ButtonGroup">
+					<a class="Button Navigation-back hasIcon" href="/" type="button"><i class="icon fa fa-fw fa-chevron-left Button-icon"></i><span class="Button-label"><i class="icon fa fa-fw fa-bars"></i></span></a>
+				</div>
+			</div>
+			<div class="container">
+				<h1 class="Header-title"><a href="http://localhost:8888" id="home-link">[[forum.title]]</a></h1>
+				<div class="Header-primary" id="header-primary">
+					<ul class="Header-controls"></ul>
+				</div>
+				<div class="Header-secondary" id="header-secondary">
+					<ul class="Header-controls">
+						<li class="item-search">
+							<div class="Search">
+								<div class="Search-input">
+									<input class="FormControl" placeholder="Search Forum">
+								</div>
+								<ul class="Dropdown-menu Search-results"></ul>
+							</div>
+						</li>
+						<li class="item-flags">
+							<div class="ButtonGroup Dropdown dropdown NotificationsDropdown itemCount0">
+								<button class="Dropdown-toggle Button Button--flat" data-toggle="dropdown" title="Flagged Posts"><i class="icon fa fa-fw fa-flag Button-icon"></i><span class="Button-label">Flagged Posts</span></button>
+								<div class="Dropdown-menu Dropdown-menu--right"></div>
+							</div>
+						</li>
+						<li class="item-notifications">
+							<div class="ButtonGroup Dropdown dropdown NotificationsDropdown itemCount0">
+								<button class="Dropdown-toggle Button Button--flat" data-toggle="dropdown" title="Notifications"><i class="icon fa fa-fw fa-bell Button-icon"></i><span class="Button-label">Notifications</span></button>
+								<div class="Dropdown-menu Dropdown-menu--right"></div>
+							</div>
+						</li>
+						<li class="item-session">
+							<div class="ButtonGroup Dropdown dropdown SessionDropdown itemCount5">
+								<button class="Dropdown-toggle Button Button--user Button--flat" data-toggle="dropdown"><span class="Avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="Button-label"><span class="username">datitisev</span></span></button>
+								<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+									<li class="item-profile">
+										<a class=" hasIcon" href="/u/datitisev" type="button"><i class="icon fa fa-fw fa-user Button-icon"></i><span class="Button-label">Profile</span></a>
+									</li>
+									<li class="item-settings">
+										<a class=" hasIcon" href="/settings" type="button"><i class="icon fa fa-fw fa-cog Button-icon"></i><span class="Button-label">Settings</span></a>
+									</li>
+									<li class="item-administration">
+										<a class=" hasIcon" href="http://localhost:8888/admin" target="_blank" type="button"><i class="icon fa fa-fw fa-wrench Button-icon"></i><span class="Button-label">Administration</span></a>
+									</li>
+									<li class="Dropdown-separator"></li>
+									<li class="item-logOut"><button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-sign-out Button-icon"></i><span class="Button-label">Log Out</span></button></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<main class="App-content">
+		{{> postContent}}
+	</main>
+
+</div>
