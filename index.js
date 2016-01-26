@@ -19,10 +19,7 @@ hbs.registerPartials(__dirname + '/lib/views/partials');
 app.use(express.static(path.join(__dirname, '/lib/public')));
 
 
-
 fs.readFile('flarum/config.json', 'utf8', function (err, data) {
-
-	console.log(data);
 
 	if (!err && !data) {
 		fs.writeFile('flarum/config.json', '{}', function (err2) {
@@ -34,38 +31,37 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 			if (config.mongodb) connectMongo(config.mongodb);
 
 			setUpRoutes();
+			app.use('/', routes);
 		});
 	}
 	if (err == 'Error: ENOENT, open \'flarum/config.json\'') {
 		var error =  new Error('Config File Not Found');
-		debugError('[CONFIG]');
-		debugError(err);
 		console.log('[FLARUM] ' + err);
-		fs.writeFile('flarum/config.json', '{}', function (err2) {
-			if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
-				var error =  new Error('Config File Not Found');
-				debugError('[CONFIG]');
-				debugError(err);
-				return console.log('[FLARUM] ' + err);
-			} else if (err2) throw err2;
-			console.log('[FLARUM] Config File Written!');
+		fs.mkdir('flarum', function (err1) {
+			if (err1) throw err1;
+			fs.writeFile('flarum/config.json', '{}', function (err2) {
+				if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
+					var error =  new Error('Config File Not Found');
+					return console.log('[FLARUM] ' + err);
+				} else if (err2) throw err2;
+				console.log('[FLARUM] Config File Written!');
 
-			config = require('./../../flarum/config.json')
+				config = require('./../../flarum/config.json')
 
-			if (config.mongodb) connectMongo(config.mongodb);
+				if (config.mongodb) connectMongo(config.mongodb);
 
-			setUpRoutes();
-			app.use('/', routes);
+				setUpRoutes();
+				app.use('/', routes);
+			});
 		});
 	} else if (err) {
 		var error =  new Error('[FLARUM] ' + err);
-		debugError('[CONFIG]');
-		debugError(err);
 		throw error;
 	} else if (data) {
 		config = require('./../../flarum/config.json');
 
-		setUpRoutes();
+		setUpRoutes()
+		app.use('/', routes);
 
 		if (config.mongodb) connectMongo(config.mongodb);
 	}

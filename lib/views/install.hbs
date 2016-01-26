@@ -296,7 +296,7 @@
 				window.location.reload();
 			})
 			.fail(function(data) {
-				$('#error').show().text('Something went wrong:\n\n' + data.responseText);
+				$('#error').show().html('Something went wrong:\n\n' + data.responseText);
 
 				setTimeout(function () {
 					$button.prop('disabled', false).text('Install Flarum');

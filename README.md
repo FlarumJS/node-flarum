@@ -12,6 +12,8 @@ npm install node-flarum --save
 
 ## Usage
 
+1. First, create a folder called *flarum* in the root of your express project
+
 ```node
 var flarum = require('flarum');
 
