@@ -34,4 +34,4 @@ Whenever this forum is complete [•••], there will be a website here for th
 ## Release History
 
 * v0.0.1 Nothing to see here yet
-* v0.0.2 Fixed links because of app.use() and fixed config writing on install
+* v0.0.2 Fixed links because of app.use(), fixed config writing on install, and fixed angularjs
