@@ -18,11 +18,6 @@ app.set('port', process.env.PORT || 8080);
 hbs.registerPartials(__dirname + '/lib/views/partials');
 app.use(express.static(path.join(__dirname, '/lib/public')));
 
-app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
-	next(err);
-});
 
 
 fs.readFile('flarum/config.json', 'utf8', function (err, data) {
@@ -34,12 +29,11 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 			if (err2) throw err2;
 			console.log('[FLARUM] Config File Set Up!');
 
-			config = require('./lib/config/config.json')
+			config = require('./../../flarum/config.json')
 
-			connectMongo(config.mongodb);
+			if (config.mongodb) connectMongo(config.mongodb);
 
-			routes = require('./lib/routes/index');
-			app.use('/', routes);
+			setUpRoutes();
 		});
 	}
 	if (err == 'Error: ENOENT, open \'flarum/config.json\'') {
@@ -56,11 +50,11 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 			} else if (err2) throw err2;
 			console.log('[FLARUM] Config File Written!');
 
-			config = require('./lib/config/config.json')
+			config = require('./../../flarum/config.json')
 
-			connectMongo(config.mongodb);
+			if (config.mongodb) connectMongo(config.mongodb);
 
-			routes = require('./lib/routes/index');
+			setUpRoutes();
 			app.use('/', routes);
 		});
 	} else if (err) {
@@ -69,14 +63,19 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 		debugError(err);
 		throw error;
 	} else if (data) {
-		config = require('./lib/config/config.json');
-		routes = require('./lib/routes/index');
-		app.use('/', routes);
-		console.log('Path: ' + routes.path());
-		connectMongo(config.mongodb);
-	}
+		config = require('./../../flarum/config.json');
 
+		setUpRoutes();
+
+		if (config.mongodb) connectMongo(config.mongodb);
+	}
+	app.use(function(req, res, next) {
+		var err = new Error('Not Found');
+		err.status = 404;
+		next(err);
+	});
 })
+
 
 
 // error handlers
@@ -136,4 +135,11 @@ function connectMongo (mongo) {
 			// No Mongo Config
 		}
 	}
+}
+
+function setUpRoutes () {
+	routes = require('./lib/routes');
+	routes.set('views', path.join(__dirname, 'lib/views'));
+	routes.set('view engine', 'hbs');
+	app.use('/', routes);
 }
