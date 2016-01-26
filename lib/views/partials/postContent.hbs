@@ -14,7 +14,7 @@
 								<li class="item-tags" ng-show="discussion.tags">
 									<span class="TagsLabel">
 										<a class="TagLabel colored" ng-repeat="tag in discussion.tags" href="[[tag.slug]]" style="color: [[tag.color]] background-color: [[tag.color]]" title="[[tag.info]]">
-											<span class="TagLabel-text">hi [[tag.label]]</span>
+											<span class="TagLabel-text">[[tag.label]]</span>
 										</a>
 										{{!-- <a class="TagLabel colored" href="/t/news" style="color: rgb(0, 255, 0); background-color: rgb(0, 255, 0);" title="News / Updates of Cookie Clicker (versions)">
 											<span class="TagLabel-text">News</span>
@@ -23,7 +23,7 @@
 								</li>
 							</ul>
 							<li class="item-title">
-								<h2 class="DiscussionHero-title">hi[[discussion.title]]</h2>
+								<h2 class="DiscussionHero-title">[[discussion.title]]</h2>
 							</li>
 						</ul>
 					</div>
@@ -116,7 +116,7 @@
 											<ul>
 												<li class="item-user">
 													<div class="PostUser">
-														<h3><a href="/u/datitisev"><span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="username">datitisev</span></a></h3>
+														<h3><a href="{{forumPath}}u/datitisev"><span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="username">datitisev</span></a></h3>
 														<ul class="PostUser-badges badges">
 															<li class="item-group1"><span class="Badge Badge--group--Admin" data-original-title="Admin" style="background-color: rgb(183, 42, 42);" title=""><i class="icon fa fa-fw fa-wrench Badge-icon"></i></span></li>
 														</ul>
@@ -196,7 +196,7 @@
 											<ul>
 												<li class="item-user">
 													<div class="PostUser">
-														<h3><a href="/u/datitisev"><span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="username">datitisev</span></a></h3>
+														<h3><a href="{{forumPath}}u/datitisev"><span class="Avatar PostUser-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">D</span> <span class="username">datitisev</span></a></h3>
 														<ul class="PostUser-badges badges">
 															<li class="item-group1"><span class="Badge Badge--group--Admin" data-original-title="Admin" style="background-color: rgb(183, 42, 42);" title=""><i class="icon fa fa-fw fa-wrench Badge-icon"></i></span></li>
 														</ul>

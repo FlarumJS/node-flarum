@@ -43,9 +43,9 @@
 					<i class="icon fa fa-fw fa-check "></i>
 				</a>
 				<div class="DiscussionListItem-content Slidable-content read">
-					<a href="/u/[[discussion.start_username]]" class="DiscussionListItem-author" title="" data-original-title="[[discussion.start_username]] started [[discussion.start_time]]"><span class="Avatar " style="background: rgb(175, 160, 229);">[[discussion.start_username | limitTo : 1 | uppercase]]</span></a>
+					<a href="{{forumPath}}u/[[discussion.start_username]]" class="DiscussionListItem-author" title="" data-original-title="[[discussion.start_username]] started [[discussion.start_time]]"><span class="Avatar " style="background: rgb(175, 160, 229);">[[discussion.start_username | limitTo : 1 | uppercase]]</span></a>
 					<ul class="DiscussionListItem-badges badges"></ul>
-					<a href="/d/[[discussion.slug]]" class="DiscussionListItem-main">
+					<a href="{{forumPath}}d/[[discussion.slug]]" class="DiscussionListItem-main">
 						<h3 class="DiscussionListItem-title">[[discussion.title]]</h3>
 						<ul class="DiscussionListItem-info">
 							<li class="item-tags">

@@ -291,7 +291,7 @@
 			.text('Please Wait...')
 			.prop('disabled', true);
 
-			$.post('/flarum/install', $(this).serialize())
+			$.post('{{forumPath}}flarum/install', $(this).serialize())
 			.done(function() {
 				window.location.reload();
 			})
