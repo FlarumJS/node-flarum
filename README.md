@@ -12,7 +12,6 @@ npm install node-flarum --save
 
 ## Usage
 
-1. First, create a folder called *flarum* in the root of your express project
 
 ```node
 var flarum = require('flarum');
@@ -27,7 +26,6 @@ app.use('/forum', flarum)
 
 
 
-
 ## Contributing
 
 Whenever this forum is complete [•••], there will be a website here for the official *NodeJS* Flarum forum
@@ -35,4 +33,5 @@ Whenever this forum is complete [•••], there will be a website here for th
 
 ## Release History
 
-* 0.0.1 Nothing to see here yet
+* v0.0.1 Nothing to see here yet
+* v0.0.2 Fixed links because of app.use() and fixed config writing on install
