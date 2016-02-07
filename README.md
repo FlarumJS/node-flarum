@@ -1,6 +1,5 @@
 # node-flarum
 
-*Express Middleware*
 A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
 ## Installation
@@ -12,16 +11,28 @@ npm install node-flarum --save
 
 ## Usage
 
+### HTTP
+
 
 ```node
-var flarum = require('flarum');
+var http = require('http');
+var flarum = require('node-flarum');
+
+http.createServer(flarum).listen(3000, '192.168.2.9');
+```
+
+### Express
+
+```node
+var flarum = require('node-flarum');
 
 var express = require('express');
 var app = express();
 
 // Other stuff
 
-app.use('/forum', flarum)
+app.use('/forum', flarum) // This will execute flarum on the "/forum" path
+app.use(flarum)           // This will execute flarum on the root path
 ```
 
 
@@ -33,5 +44,10 @@ Whenever this forum is complete [•••], there will be a website here for th
 
 ## Release History
 
-* v0.0.1 Nothing to see here yet
-* v0.0.2 Fixed links because of app.use(), fixed config writing on install, and fixed angularjs
+* v0.0.1 [ADDED] NPM Package Information
+* v0.0.5
+  * [ADDED] MongoDB Config To Installation Screen
+  * [ADDED] Config File in path/to/project/flarum/config.json
+  * [FIXED] Had to restart node process after installation for mongodb
+  * [FIXED] Links on forum would point to root, not forum path
+  * [FIXED] AngularJS Requests & Font Awesome
