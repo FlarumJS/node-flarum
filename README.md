@@ -44,10 +44,5 @@ Whenever this forum is complete [•••], there will be a website here for th
 
 ## Release History
 
-* v0.0.1 [ADDED] NPM Package Information
-* v0.0.5
-  * [ADDED] MongoDB Config To Installation Screen
-  * [ADDED] Config File in path/to/project/flarum/config.json
-  * [FIXED] Had to restart node process after installation for mongodb
-  * [FIXED] Links on forum would point to root, not forum path
-  * [FIXED] AngularJS Requests & Font Awesome
+* v0.0.1 - NPM Package Information
+* v0.0.5 - Added Configuration Tweaks, fixed links and mongodb problems ([Full Release Information](https://github.com/datitisev/node-flarum/releases/tag/0.0.5))
