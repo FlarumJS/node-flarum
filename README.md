@@ -18,7 +18,7 @@ npm install node-flarum --save
 var http = require('http');
 var flarum = require('node-flarum');
 
-http.createServer(flarum).listen(3000, '192.168.2.9');
+http.createServer(flarum).listen(3000);
 ```
 
 ### Express
