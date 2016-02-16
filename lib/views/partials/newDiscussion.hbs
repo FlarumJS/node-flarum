@@ -18,33 +18,36 @@
 		</ul>
 		<div class="Composer-content" ng-click="IndexSideNav.hideNewDiscussion = false; IndexSideNav.composerDivClass = ' '">
 			<div class="ComposerBody">
-				<span class="Avatar ComposerBody-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">[[IndexSideNav.username | limitTo : 1 | uppercase]]</span>
-				<div class="ComposerBody-content">
-					<ul class="ComposerBody-header">
-						<li class="item-tags">
-							<a class="DiscussionComposer-changeTags"><span class=
-								"TagLabel untagged">Choose Tags</span>
-							</a>
-						</li>
-						<li class="item-title">
-							<h3><input class="FormControl" ng-model="IndexSideNav.newDiscussionTitle" placeholder="Discussion Title"></h3>
-						</li>
-					</ul>
-					<div class="ComposerBody-editor" ng-hide="IndexSideNav.hideNewDiscussion">
-						<div class="TextEditor">
-							<textarea class="FormControl TextEditor-flexible" data-gramm=""
-							data-txt_gramm_id="9aafd5da-b817-9ab8-3196-5bdb5d54994a" placeholder="Write a Post..." id="NewDiscussionContent" ng-model="IndexSideNav.newDiscussionContent" style="height: 189px;"></textarea>
-							<div class="ComposerBody-mentionsDropdownContainer"></div>
-							<ul class="TextEditor-controls">
-								<li class="item-submit"><button class="Button Button--primary hasIcon"
-									type="button"><i class=
-									"icon fa fa-fw fa-check Button-icon"></i><span class=
-									"Button-label">Post Discussion</span></button>
-								</li>
-							</ul>
+				<form ng-submit="IndexSideNav.postNewDiscussion()" novalidate="true" role="form">
+					<span class="Avatar ComposerBody-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">[[IndexSideNav.username | limitTo : 1 | uppercase]]</span>
+					<div class="ComposerBody-content">
+						<ul class="ComposerBody-header">
+							<li class="item-tags">
+								<a class="DiscussionComposer-changeTags"><span class=
+									"TagLabel untagged">Choose Tags</span>
+								</a>
+							</li>
+							<li class="item-title">
+								<h3><input class="FormControl" ng-model="IndexSideNav.newDiscussionTitle" placeholder="Discussion Title" min="10" ng-class="IndexSideNav.newDiscussionTitleClass"></h3>
+							</li>
+						</ul>
+
+						<div class="ComposerBody-editor" ng-hide="IndexSideNav.hideNewDiscussion">
+							<div class="TextEditor">
+								<textarea class="FormControl TextEditor-flexible" data-gramm="" data-txt_gramm_id="9aafd5da-b817-9ab8-3196-5bdb5d54994a" placeholder="Write a Post..." id="NewDiscussionContent" ng-model="IndexSideNav.newDiscussionContent" style="height: 189px;"></textarea>
+								<div class="ComposerBody-mentionsDropdownContainer"></div>
+								<ul class="TextEditor-controls">
+									<li class="item-submit">
+										<button class="Button Button--primary hasIcon" type="submit">
+											<i class="icon fa fa-fw fa-check Button-icon"></i>
+											<span class="Button-label">Post Discussion</span>
+										</button>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 				<div class="LoadingIndicator ComposerBody-loading">
 					<div class="spinner" role="progressbar" style="position: absolute; width: 0px; z-index: auto; left: 50%; top: 50%;">
 						<div style="position: absolute; top: -1px; opacity: 0.25; -webkit-animation: opacity-100-25-0-8 1s linear infinite; animation: opacity-100-25-0-8 1s linear infinite;">

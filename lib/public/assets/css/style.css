@@ -1,3 +1,8 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 .toast {
 	z-index: 999999;
 }
@@ -11,6 +16,20 @@
 	margin-top: -12px;
 	margin-right: 0
 }
+
+
+pre[class^=" language-"] {
+	overflow: hidden;
+}
+
+.prism-show-language {
+	top: 6px;
+}
+
+.prism-show-language .prism-show-language-label {
+	z-index: 999999999;
+}
+
 
 /* EDITOR */
 
@@ -41,13 +60,18 @@
 	opacity: 1;
 }
 
+.App-composer #composer .error {
+	font-weight: bold;
+	color: red;
+}
+
 .App-composer #composer .visible {
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 
 .App-composer #composer .visible .ComposerBody .ComposerBody-editor .CodeMirror {
-    max-height: 100px !important;
+	padding-top: 40px !important;
 }
 
 .App-composer #composer .visible.minimized {
@@ -64,7 +88,7 @@
 }
 
 .App-composer #composer .visible::-webkit-scrollbar-track {
-		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
 .App-composer #composer .visible::-webkit-scrollbar-thumb {
