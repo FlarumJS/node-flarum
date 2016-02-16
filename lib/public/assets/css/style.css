@@ -12,6 +12,8 @@
 	margin-right: 0
 }
 
+/* EDITOR */
+
 .App-composer * {
 	-webkit-transition: height .25s ease-in-out, opacity .25s ease-in-out;
 	-moz-transition: height .25s ease-in-out, opacity .25s ease-in-out;
@@ -44,6 +46,10 @@
 	overflow-y: scroll;
 }
 
+.App-composer #composer .visible .ComposerBody .ComposerBody-editor .CodeMirror {
+    max-height: 100px !important;
+}
+
 .App-composer #composer .visible.minimized {
 	overflow-x: hidden;
 	overflow-y: hidden !important;
@@ -74,6 +80,7 @@
 .App-content {
 	border-top: none !important;
 }
+
 
 
 
