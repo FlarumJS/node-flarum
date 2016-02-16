@@ -13,12 +13,21 @@ npm install node-flarum --save
 
 ### HTTP
 
+Using the http package required the following modules to be installed: *connect* & *connect-hopeful-body-parser*
 
 ```node
 var http = require('http');
-var flarum = require('node-flarum');
+var connect = require('connect');
+var bodyParser = require('connect-hopeful-body-parser');
 
-http.createServer(flarum).listen(3000);
+var flarum = require('./index');
+
+var app = connect();
+
+app.use(bodyParser());
+app.use(flarum); // You can only have flarum in root path, otherwise won't work
+
+http.createServer(app).listen(8080);
 ```
 
 ### Express
