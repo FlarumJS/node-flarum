@@ -54,4 +54,4 @@ Whenever this forum is complete [•••], there will be a website here for th
 ## Release History
 
 * v0.0.1 - NPM Package Information
-* v0.0.5 - Added Configuration Tweaks, fixed links and mongodb problems ([Full Release Information](https://github.com/datitisev/node-flarum/releases/tag/0.0.5))
+* v0.0.2 - Added Configuration Tweaks, fixed links and mongodb problems ([Full Release Information](https://github.com/datitisev/node-flarum/releases/tag/v0.0.2))
