@@ -5,6 +5,10 @@ var debugError = require('debug')('flarum:error');
 var fs = require('fs');
 var config, routes;
 
+
+var configFileDirname = path.join(__dirname + '/../../flarum/config.json'); // production
+// var configFileDirname = path.join(__dirname + '/flarum/config.json'); // development
+
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
@@ -26,7 +30,7 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 			if (err2) throw err2;
 			console.log('[FLARUM] Config File Set Up!');
 
-			config = require('./../../flarum/config.json')
+			config = require(configFileDirname);
 
 			if (config.mongodb) connectMongo(config.mongodb);
 
@@ -46,7 +50,7 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 				} else if (err2) throw err2;
 				console.log('[FLARUM] Config File Written!');
 
-				config = require('./../../flarum/config.json')
+				config = require(configFileDirname);
 
 				if (config.mongodb) connectMongo(config.mongodb);
 
@@ -58,7 +62,8 @@ fs.readFile('flarum/config.json', 'utf8', function (err, data) {
 		var error =  new Error('[FLARUM] ' + err);
 		throw error;
 	} else if (data) {
-		config = require('./../../flarum/config.json');
+
+		config = require(configFileDirname);
 
 		setUpRoutes()
 		app.use('/', routes);
