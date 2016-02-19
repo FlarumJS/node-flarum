@@ -45,7 +45,9 @@
     "shortid": "2.2.4"
   },
   "devDependencies": {
+    "chai": "3.5.0",
     "connect": "3.4.1",
-    "connect-hopeful-body-parser": "^0.3.0"
+    "connect-hopeful-body-parser": "0.3.0",
+    "mocha": "2.4.5"
   }
 }
