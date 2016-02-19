@@ -11,7 +11,24 @@
 					<a href="{{forumPath}}" class="home-link">{{forum.title}}</a>
 				</h1>
 				<div class="Header-primary"></div>
-				<div class="Header-secondary"></div>
+				<div class="Header-secondary" id="header-secondary">
+					<ul class="Header-controls">
+						<li class="item-search">
+							<div class="Search">
+								<div class="Search-input">
+									<input class="FormControl" placeholder="Search Forum">
+								</div>
+								<ul class="Dropdown-menu Search-results"></ul>
+							</div>
+						</li>
+						<li class="item-signUp">
+							<button class="Button Button--link" type="button"><span class="Button-label">Sign Up</span></button>
+						</li>
+						<li class="item-logIn">
+							<button class="Button Button--link" type="button"><span class="Button-label">Log In</span></button>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</header>
 
@@ -105,10 +122,10 @@
 
 
 		{{!-- <div class="App-composer">
-			<div class="container">
-				{{> newDiscussion}}
-			</div>
-		</div> --}}
+		<div class="container">
+		{{> newDiscussion}}
 	</div>
+</div> --}}
+</div>
 
 </div>
