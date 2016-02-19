@@ -1,5 +1,8 @@
 # node-flarum
 
+
+[![Build Status](https://travis-ci.org/datitisev/node-flarum.svg?branch=master)](https://travis-ci.org/datitisev/node-flarum) [![NPM version](https://badge.fury.io/js/node-flarum.svg)](https://badge.fury.io/js/node-flarum)
+
 A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
 ## Installation
@@ -7,7 +10,6 @@ A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 ```sh
 npm install node-flarum --save
 ```
-
 
 ## Usage
 
