@@ -1,0 +1,21 @@
+install: npm install --dev
+
+script: make test
+
+services:
+  - mongodb
+
+language: node_js
+
+node_js:
+  - "latest"
+  - "stable"
+  - "4.3"
+  - "4.1"
+  - "4.0"
+  - "0.12"
+  - "0.11"
+  - "0.10"
+  - "0.8"
+  - "0.6"
+  - "iojs"
