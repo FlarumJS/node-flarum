@@ -6,8 +6,8 @@ var fs = require('fs');
 var config, routes;
 
 
-// var configFileDirname = path.join(__dirname + '/../../flarum/config.json'); // production
-var configFileDirname = path.join(__dirname + '/flarum/config.json'); // development
+var configFileDirname = path.join(__dirname + '/../../flarum/config.json'); // production
+// var configFileDirname = path.join(__dirname + '/flarum/config.json'); // development
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
