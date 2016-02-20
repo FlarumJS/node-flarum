@@ -6,8 +6,11 @@ var fs = require('fs');
 var config, routes;
 
 
-var configFileDirname = path.join(__dirname + '/../../flarum/config.json'); // production
-// var configFileDirname = path.join(__dirname + '/flarum/config.json'); // development
+// var configFileDirname = path.join(__dirname + '/../../flarum/config.json'); // production
+var configFileDirname = path.join(__dirname + '/flarum/config.json'); // development
+
+var functions = require('functions');
+var connectMongo = functions.connectMongo;
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -23,7 +26,7 @@ hbs.registerPartials(__dirname + '/lib/views/partials');
 app.use(express.static(path.join(__dirname, '/lib/public')));
 
 
-fs.readFile('flarum/config.json', 'utf8', function (err, data) {
+fs.readFile(configFileDirname, 'utf8', function (err, data) {
 
 	if (!err && !data) {
 		fs.writeFile('flarum/config.json', '{}', function (err2) {
@@ -80,24 +83,6 @@ db.on('error', function (err) {
 		debugError('[MongoDB] ' + err);
 	}
 });
-
-
-function connectMongo (mongo) {
-	if (mongo) {
-		if (mongo.host && mongo.database && !mongo.username && !mongo.password) {
-			var mongoUrl = 'mongodb://' + mongo.host + '/' + mongo.database;
-			mongoose.connect(mongoUrl);
-		} else if (mongo.host && mongo.database &&
-			mongo.username && mongo.password) {
-			var mongoUrl = 'mongodb://' + mongo.username + ':';
-			mongoUrl += mongo.password + '@';
-			mongoUrl += mongo.host + '/' + mongo.database;
-			mongoose.connect(mongoUrl);
-		} else {
-			// No Mongo Config
-		}
-	}
-}
 
 function setUpRoutes () {
 	routes = require('./lib/routes');
