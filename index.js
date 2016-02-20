@@ -1,11 +1,14 @@
 var express = require('express');
+var session = require('express-session');
 var hbs = require('hbs');
 var path = require('path');
 var debugError = require('debug')('flarum:error');
 var fs = require('fs');
 var config, routes;
 
-var passport = require('./lib/config/passport')
+var passport = require('passport')
+var passportjs = require('./lib/config/passport');
+
 var functions = require('./lib/config/functions');
 
 
@@ -27,10 +30,12 @@ app.set('port', process.env.PORT || 8080);
 hbs.registerPartials(__dirname + '/lib/views/partials');
 
 
-app.use(express.session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'nyan keyboard' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, '/lib/public')));
+
+passportjs(passport);
 
 
 fs.readFile(configFileDirname, 'utf8', function (err, data) {
@@ -95,7 +100,8 @@ db.on('error', function (err) {
 
 function setUpRoutes () {
 	routes = require('./lib/routes');
-	routes.set('views', path.join(__dirname, 'lib/views'));
-	routes.set('view engine', 'hbs');
-	app.use('/', routes);
+	// routes.setDependencies(passport);
+	// routes.app.set('views', path.join(__dirname, 'lib/views'));
+	// routes.app.set('view engine', 'hbs');
+	routes(app, passport);
 }
