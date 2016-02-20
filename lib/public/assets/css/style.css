@@ -11,11 +11,14 @@
 	list-style-type: none;
 }
 
-.DiscussionList--Item .DiscussionListItem-info .item-tags {
-	float: right;
-	margin-top: -12px;
-	margin-right: 0
+@media (min-width: 991px) {
+	.DiscussionList--Item .DiscussionListItem-info .item-tags {
+		float: right;
+		margin-top: -12px;
+		margin-right: 0
+	}
 }
+
 
 
 pre[class^=" language-"] {
