@@ -1,6 +1,6 @@
 {
   "name": "node-flarum",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "description": "The Flarum forum with NodeJS",
   "main": "index.js",
   "scripts": {

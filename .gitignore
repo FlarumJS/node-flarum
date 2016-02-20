@@ -1,3 +1,3 @@
 node_modules
 flarum
-app.js
+./app.js
