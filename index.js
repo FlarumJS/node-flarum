@@ -6,7 +6,8 @@ var debugError = require('debug')('flarum:error');
 var fs = require('fs');
 var config, routes;
 
-var passport = require('passport')
+var passport = require('passport');
+var flash    = require('connect-flash');
 var passportjs = require('./lib/config/passport');
 
 var functions = require('./lib/config/functions');
@@ -33,22 +34,23 @@ hbs.registerPartials(__dirname + '/lib/views/partials');
 app.use(session({ secret: 'nyan keyboard' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(express.static(path.join(__dirname, '/lib/public')));
 
-passportjs(passport);
+passportjs((app.path() != '//' && app.path() || '/'), passport);
 
 
 fs.readFile(configFileDirname, 'utf8', function (err, data) {
-	
+
 	if (!err && !data) {
 		fs.writeFile('flarum/config.json', '{}', function (err2) {
 			if (err2) throw err2;
 			console.log('[FLARUM] Config File Set Up!');
-			
+
 			config = require(configFileDirname);
-			
+
 			if (config.mongodb) connectMongo(config.mongodb);
-			
+
 			setUpRoutes();
 			app.use('/', routes);
 		});
@@ -64,11 +66,11 @@ fs.readFile(configFileDirname, 'utf8', function (err, data) {
 					return console.log('[FLARUM] ' + err);
 				} else if (err2) throw err2;
 				console.log('[FLARUM] Config File Written!');
-				
+
 				config = require(configFileDirname);
-				
+
 				if (config.mongodb) connectMongo(config.mongodb);
-				
+
 				setUpRoutes();
 				app.use('/', routes);
 			});
@@ -77,12 +79,12 @@ fs.readFile(configFileDirname, 'utf8', function (err, data) {
 		var error =  new Error('[FLARUM] ' + err);
 		throw error;
 	} else if (data) {
-		
+
 		config = require(configFileDirname);
-		
+
 		setUpRoutes()
 		app.use('/', routes);
-		
+
 		if (config.mongodb) connectMongo(config.mongodb);
 	}
 })

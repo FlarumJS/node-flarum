@@ -11,30 +11,34 @@
 	<link rel="stylesheet" href="http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
 	<link rel="stylesheet" href="{{forumPath}}assets/css/style.css" />
 	<link rel="stylesheet" href="{{forumPath}}assets/css/prismjs.css" />
+	<link rel="shortcut icon" href="/favicon.ico">
 	<meta name="description" content="{{forum.description}}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 	<meta name="theme-color" content="{{forum.config.themePrimaryColor}}" />
 	<style>
-	[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-		display: none !important;
-	}
-	@font-face {
-		font-family: 'FontAwesome';
-		src: url('{{forumPath}}assets/fonts/fontawesome-webfont.eot?v=4.4.0');
-		src: url('{{forumPath}}assets/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('{{forumPath}}assets/fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('{{forumPath}}assets/fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('{{forumPath}}assets/fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('{{forumPath}}assets/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg');
-		font-weight: normal;
-		font-style: normal
-	}
+		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+			display: none !important;
+		}
+		@font-face {
+			font-family: 'FontAwesome';
+			src: url('{{forumPath}}assets/fonts/fontawesome-webfont.eot?v=4.4.0');
+			src: url('{{forumPath}}assets/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('{{forumPath}}assets/fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('{{forumPath}}assets/fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('{{forumPath}}assets/fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('{{forumPath}}assets/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg');
+			font-weight: normal;
+			font-style: normal
+		}
 	</style>
 </head>
 <body class="modal-open">
-	
+	<div id="modalOverlay" ng-class="modalOverlayClass"></div>
 	<div id="modal">
-		<div class="ModalManager modal fade in" style="display: none; padding-left: 0px;">
+		<div class="ModalManager modal fade in loginModal{{#if showLoginModal}} show{{/if}}" style="display: block; padding-left: 0px;" ng-class="loginModalClass">
+			{{!-- {{/if}} --}}
 			<div class="Modal modal-dialog LogInModal Modal--small">
 				<div class="Modal-content">
 					<div class="Modal-close App-backControl">
-						<button class="Button Button--icon Button--link hasIcon" type="button"><i class="icon fa fa-fw fa-times Button-icon"></i></button>
+						<button class="Button Button--icon Button--link hasIcon" type="button" ng-click="loginModalClass = 'hide'; modalOverlayClass = ''">
+							<i class="icon fa fa-fw fa-times Button-icon"></i>
+						</button>
 					</div>
 					<form>
 						<div class="Modal-header">
@@ -73,9 +77,9 @@
 		</div>
 	</div>
 	<div id="alerts"></div>
-	
+
 	{{{body}}}
-	
+
 	<script src="{{forumPath}}assets/js/forum-8a0805bb.js"></script>
 	<script src="{{forumPath}}assets/angular/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -86,7 +90,8 @@
 	<script src="{{forumPath}}assets/angular/app.js"></script>
 	<script src="{{forumPath}}assets/js/script.js"></script>
 	<script>
-	executeAngular('{{forumPath}}'{{#if user}},{{user}}{{/if}});
+		executeAngular('{{forumPath}}'{{#if user}}, {{{user}}}{{/if}});
+
 	</script>
 </body>
 </html>
