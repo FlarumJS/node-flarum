@@ -1,7 +1,8 @@
 # node-flarum
 
 
-[![Build Status](https://travis-ci.org/datitisev/node-flarum.svg?branch=master)](https://travis-ci.org/datitisev/node-flarum) [![GitHub version](https://badge.fury.io/gh/datitisev%2Fnode-flarum.svg)](https://badge.fury.io/gh/datitisev%2Fnode-flarum) [![NPM version](https://badge.fury.io/js/node-flarum.svg)](https://badge.fury.io/js/node-flarum)
+[![Build Status](https://travis-ci.org/FlarumJS/node-flarum.svg?branch=master)](https://travis-ci.org/FlarumJS/node-flarum) [![GitHub version](https://badge.fury.io/gh/FlarumJS%2Fnode-flarum.svg)](https://badge.fury.io/gh/FlarumJS%2Fnode-flarum)
+* v0.0.1-beta0.4 [![NPM version](https://badge.fury.io/js/node-flarum.svg)](https://badge.fury.io/js/node-flarum)
 
 A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
@@ -55,5 +56,6 @@ Whenever this forum is complete [•••], there will be a website here for th
 
 ## Release History
 
-* v0.0.1 - NPM Package Information
-* v0.0.2 - Added Configuration Tweaks, fixed links and mongodb problems ([Full Release Information](https://github.com/datitisev/node-flarum/releases/tag/v0.0.2))
+* v0.0.1-beta.1 - NPM Package Information
+* v0.0.1.beta.2 - Added Configuration Tweaks, fixed links and mongodb problems ([Full Release Information](https://github.com/FlarumJS/node-flarum/releases/tag/v0.0.1-beta.2))
+* v0.0.1-beta.3 - Added Sign Up & Log In Options ([Full Release Information](https://github.com/FlarumJS/node-flarum/releases/tag/v0.0.1-beta.3))
