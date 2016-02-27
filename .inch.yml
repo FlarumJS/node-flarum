@@ -1,0 +1,11 @@
+files:
+  # define files included in the analysis (defaults to ["{app,lib}/**/*.rb"])
+  included:
+    - lib/**/*.js
+    - lib/**/**/*.js
+  # define files excluded from the analysis (defaults to [])
+  excluded:
+    - lib/public/assets/angular/angular.min.js
+    - lib/public/assets/js/marked.min.js
+    - lib/public/assets/js/prism.min.js
+    - lib/public/assets/js/forum-8a0805bb.js

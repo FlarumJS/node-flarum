@@ -3,6 +3,7 @@ install:
   - npm install chai
   - npm install mongoose
   - npm install assert
+  - npm install debug
 
 script: make test
 

@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
 	<link rel="stylesheet" href="{{forumPath}}assets/css/style.css" />
 	<link rel="stylesheet" href="{{forumPath}}assets/css/prismjs.css" />
+	<link rel="shortcut icon" href="/favicon.ico">
 	<meta name="description" content="{{forum.description}}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 	<meta name="theme-color" content="{{forum.config.themePrimaryColor}}" />
@@ -27,9 +28,113 @@
 		}
 	</style>
 </head>
-<body>
-
-	<div id="modal"></div>
+<body class="modal-open">
+	<div id="modalOverlay" ng-class="modalOverlayClass"></div>
+	<div id="modal" class="loginModals">
+		<div class="ModalManager modal LogInModal{{#if showLoginModal}} show{{/if}}" {{#if showLoginModal}}ng-init="loginModalClass = 'show'; modalOverlayClass = 'work'" {{/if}}style="display: block; padding-left: 0px;" ng-class="loginModalClass">
+			<div class="Modal modal-dialog LogInModal Modal--small">
+				<div class="Modal-content">
+					<div class="Modal-close App-backControl">
+						<button class="Button Button--icon Button--link hasIcon" type="button" ng-click="loginModalClass = 'hide'; modalOverlayClass = ''">
+							<i class="icon fa fa-fw fa-times Button-icon"></i>
+						</button>
+					</div>
+					<form ng-controller="SignController as SignController" ng-submit="SignController.logIn()">
+						<div class="Modal-header">
+							<h3 class="App-titleControl App-titleControl--text">
+								Log In
+							</h3>
+						</div>
+						<div class="Modal-alert">
+							{{#if loginError}}
+							<div class="Alert Alert--error">
+								<span class="Alert-body">
+									{{#each loginError}}
+									{{this}}<br/>
+									{{/each}}
+								</span>
+								<ul class="Alert-controls"></ul>
+							</div>
+							{{/if}}
+						</div>
+						<div class="Modal-body">
+							<div class="LogInButtons">
+								<button class="Button LogInButton--facebook LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-facebook-official Button-icon"></i><span class="Button-label">Log In with Facebook</span></button><button class="Button LogInButton--twitter LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-twitter Button-icon"></i><span class="Button-label">Log In with Twitter</span></button><button class="Button LogInButton--github LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-github Button-icon"></i><span class="Button-label">Log In with GitHub</span></button>
+							</div>
+							<div class="Form Form--centered">
+								<input type="hidden" name="client" value="true">
+								<div class="Form-group">
+									<input class="FormControl" name="email" placeholder="Username or Email" type="text" ng-model="SignController.signin_username" value="username" />
+								</div>
+								<div class="Form-group">
+									<input class="FormControl" name="password" placeholder="Password" type="password" ng-model="SignController.signin_password" value="password" />
+								</div>
+								<div class="Form-group">
+									<button class="Button Button--primary Button--block" type="submit"><span class="Button-label">Log In</span></button>
+								</div>
+							</div>
+						</div>
+						<div class="Modal-footer">
+							<p class="LogInModal-forgotPassword">
+								<a>Forgot password?</a>
+							</p>
+							<p class="LogInModal-signUp">
+								Don't have an account? <a>Sign Up</a>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="ModalManager modal SignUpModal{{#if showSignupModal}} show{{/if}}" style="display: block; padding-left: 0px;" ng-class="signupModalClass">
+			<div class="Modal modal-dialog Modal--small SignUpModal">
+				<div class="Modal-content">
+					<div class="Modal-close App-backControl">
+						<button class="Button Button--icon Button--link hasIcon" type="button" ng-click="signupModalClass = 'hide'; modalOverlayClass = ''">
+							<i class="icon fa fa-fw fa-times Button-icon"></i>
+						</button>
+					</div>
+					<form ng-controller="SignController as SignController" ng-submit="SignController.signUp()">
+						<div class="Modal-header">
+							<h3 class="App-titleControl App-titleControl--text">
+								Sign Up
+							</h3>
+						</div>
+						<div class="Modal-alert"></div>
+						<div class="Modal-body">
+							<div class="LogInButtons">
+								<button class="Button LogInButton--facebook LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-facebook-official Button-icon"></i><span class="Button-label">Log In with Facebook</span></button><button class="Button LogInButton--twitter LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-twitter Button-icon"></i><span class="Button-label">Log In with Twitter</span></button><button class="Button LogInButton--github LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-github Button-icon"></i><span class="Button-label">Log In with GitHub</span></button>
+							</div>
+							<div class="Form Form--centered">
+								<div class="Form-group">
+									<input class="FormControl" name="username" placeholder="Username" type="text" ng-model="SignController.signup_username">
+								</div>
+								<div class="Form-group">
+									<input class="FormControl" name="email" placeholder="Email" type="email" ng-model="SignController.signup_email">
+								</div>
+								<div class="Form-group">
+									<input class="FormControl" name="password" placeholder="Password" type="password" ng-model="SignController.signup_password">
+								</div>
+								<div class="Form-group">
+									<input class="FormControl" name="passwordCheck" placeholder="Password Check" type="password" ng-model="SignController.signup_passwordCheck">
+								</div>
+								<div class="Form-group">
+									<button class="Button Button--primary Button--block" type="submit">
+										<span class="Button-label">Sign Up</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="Modal-footer">
+							<p class="SignUpModal-logIn">
+								Already have an account? <a>Log In</a>
+							</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="alerts"></div>
 
 	{{{body}}}
@@ -44,7 +149,8 @@
 	<script src="{{forumPath}}assets/angular/app.js"></script>
 	<script src="{{forumPath}}assets/js/script.js"></script>
 	<script>
-		executeAngular('{{forumPath}}'{{#if user}},{{user}}{{/if}});
+		executeAngular('{{forumPath}}'{{#if user}}, {{{user}}}{{/if}});
+
 	</script>
 </body>
 </html>
