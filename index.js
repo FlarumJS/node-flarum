@@ -13,10 +13,11 @@ var passportjs = require('./lib/config/passport');
 var functions = require('./lib/config/functions');
 
 
-// var configFileDirname = path.join(__dirname + '/../../flarum/config.json'); // production
-var configFileDirname = path.join(__dirname + '/flarum/config.json'); // development
+// var flarumFolderDirectory = path.join(__dirname + '/../../flarum'); // production
+var flarumFolderDirectory = path.join(__dirname + '/flarum'); // development
 
 var connectMongo = functions.connectMongo;
+var throwError = functions.throwError;
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -40,14 +41,14 @@ app.use(express.static(path.join(__dirname, '/lib/public')));
 passportjs((app.path() != '//' && app.path() || '/'), passport);
 
 
-fs.readFile(configFileDirname, 'utf8', function (err, data) {
+fs.readFile(flarumFolderDirectory + '/config.json', 'utf8', function (err, data) {
 
 	if (!err && !data) {
-		fs.writeFile('flarum/config.json', '{}', function (err2) {
-			if (err2) throw err2;
+		fs.writeFile(confirFileDirname, '{}', function (err2) {
+			if (err2) return throwError('Error while trying to create config.json file', err2);
 			console.log('[FLARUM] Config File Set Up!');
 
-			config = require(configFileDirname);
+			config = require(flarumFolderDirectory + '/config.json');
 
 			if (config.mongodb) connectMongo(config.mongodb);
 
@@ -58,8 +59,8 @@ fs.readFile(configFileDirname, 'utf8', function (err, data) {
 	if (err == 'Error: ENOENT, open \'flarum/config.json\'') {
 		var error =  new Error('Config File Not Found');
 		console.log('[FLARUM] ' + err);
-		fs.mkdir('flarum', function (err1) {
-			if (err1) throw err1;
+		fs.mkdir(flarumFolderDirectory, function (err1) {
+			if (err1) return throwError('Error while trying to create flarum/ directory', err1);
 			fs.writeFile('flarum/config.json', '{}', function (err2) {
 				if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
 					var error =  new Error('Config File Not Found');
@@ -67,7 +68,7 @@ fs.readFile(configFileDirname, 'utf8', function (err, data) {
 				} else if (err2) throw err2;
 				console.log('[FLARUM] Config File Written!');
 
-				config = require(configFileDirname);
+				config = require(flarumFolderDirectory + '/config.json');
 
 				if (config.mongodb) connectMongo(config.mongodb);
 
@@ -76,11 +77,10 @@ fs.readFile(configFileDirname, 'utf8', function (err, data) {
 			});
 		});
 	} else if (err) {
-		var error =  new Error('[FLARUM] ' + err);
-		throw error;
+		debugError('Error while trying to open the config.json file in flarum/', err);
 	} else if (data) {
 
-		config = require(configFileDirname);
+		config = require(flarumFolderDirectory + '/config.json');
 
 		setUpRoutes()
 		app.use('/', routes);
@@ -94,9 +94,9 @@ fs.readFile(configFileDirname, 'utf8', function (err, data) {
 
 db.on('error', function (err) {
 	if (err == 'MongoError: connect ECONNREFUSED') {
-		debugError('[MongoDB] Could not connect to MongoDB!!');
+		throwError('[MongoDB] Could not connect to MongoDB!!');
 	} else {
-		debugError('[MongoDB] ' + err);
+		throwError('[MongoDB] ', err);
 	}
 });
 
