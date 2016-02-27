@@ -1,8 +1,7 @@
 # node-flarum
 
 
-[![Build Status](https://travis-ci.org/FlarumJS/node-flarum.svg?branch=master)](https://travis-ci.org/FlarumJS/node-flarum) [![GitHub version](https://badge.fury.io/gh/FlarumJS%2Fnode-flarum.svg)](https://badge.fury.io/gh/FlarumJS%2Fnode-flarum)
-* v0.0.1-beta0.4 [![NPM version](https://badge.fury.io/js/node-flarum.svg)](https://badge.fury.io/js/node-flarum)
+[![Build Status](https://travis-ci.org/FlarumJS/node-flarum.svg?branch=master)](https://travis-ci.org/FlarumJS/node-flarum) [![GitHub version](https://badge.fury.io/gh/FlarumJS%2Fnode-flarum.svg)](https://badge.fury.io/gh/FlarumJS%2Fnode-flarum) [![NPM version](https://badge.fury.io/js/node-flarum.svg)](https://badge.fury.io/js/node-flarum)
 
 A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
