@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/datitisev/node-flarum.git"
+    "url": "git+https://github.com/FlarumJS/node-flarum.git"
   },
   "keywords": [
     "flarum",
@@ -19,28 +19,33 @@
     "forum"
   ],
   "author": "David Sevilla Martín (dsevilla192@icloud.com)",
-  "license": "ISC",
+  "license": "MIT",
   "licenses": [
     {
-      "type": "ISC",
-      "url": "https://github.com/datitisev/node-flarum/blob/master/LICENSE"
+      "type": "MIT",
+      "url": "https://github.com/FlarumJS/node-flarum/blob/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/datitisev/node-flarum/issues"
+    "url": "https://github.com/FlarumJS/node-flarum/issues"
   },
-  "homepage": "https://github.com/datitisev/node-flarum#readme",
+  "homepage": "https://github.com/FlarumJS/node-flarum#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "3.3.1",
     "body-parser": "1.14.2",
+    "connect-flash": "0.1.1",
     "cookie-parser": "1.4.1",
     "debug": "2.2.0",
     "express": "4.13.4",
+    "express-session": "1.13.0",
     "hbs": "4.0.0",
     "mongoose": "4.3.7",
     "morgan": "1.6.1",
     "passport": "0.3.2",
-    "passport-local": "1.0.0",
+    "passport-google": "0.3.0",
+    "passport-google-oauth2": "0.1.6",
+    "rollbar": "0.5.13",
     "serve-favicon": "2.3.0",
     "shortid": "2.2.4"
   },
