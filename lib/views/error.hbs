@@ -7,11 +7,16 @@
 	body {
 		/*background: url(http://i.imgur.com/76NZB7A.gif) no-repeat center center fixed;*/
 		background-size: cover;
+		position: fixed;
 		font-family: 'Raleway', sans-serif;
 		background-color: #342643;
 		height: 100vh;
 		width: 100vw;
 		/*position: fixed;*/
+	}
+
+	a {
+		color: lightblue;
 	}
 
 	.text-wrapper {
@@ -45,6 +50,7 @@
 		font-size: 40px;
 		font-weight: 700;
 		color: #1FA9D6;
+		text-align: center;
 	}
 
 	.subtitle pre {
@@ -81,7 +87,7 @@
 {{!-- <pre>{{error.stack}}</pre> --}}
 
 <div class="text-wrapper">
-	<div class="title" data-content="404">
+	<div class="title" data-content="{{error.status}}">
 		{{error.status}}
 	</div>
 
@@ -92,7 +98,18 @@
 		{{#if serverError}}
 		Internal Server Error. Please come back later.
 		{{/if}}
+		{{#if unauthorized}}
+		Unauthorized
+		{{/if}}
 	</div>
+
+	<br><br>
+
+	{{#if message}}
+	<div class="subtitle">
+	{{{message}}}
+	</div>
+	{{/if}}
 
 	<div class="subtitle">
 		<pre>
