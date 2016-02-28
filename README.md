@@ -5,17 +5,23 @@
 
 A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
+---
+
 ## Installation
 
-
-#### Stable
+#### NPM
 ```sh
 npm install node-flarum --save
 ```
 
-#### Latest Release
+#### Latest Stable Release
 ```sh
 npm install git+https://github.com/FlarumJS/node-flarum.git --save
+```
+
+#### Latest Release
+```sh
+npm install git+https://github.com/FlarumJS/node-flarum.git#develop
 ```
 
 ## Usage
@@ -53,12 +59,25 @@ app.use('/forum', flarum) // This will execute flarum on the "/forum" path
 app.use(flarum)           // This will execute flarum on the root path
 ```
 
+---
+
+## Inline Docs
+
+### Online
+Visit the [FlarumJS Inline Docs](http://flarumjs.github.io/docs/)
+
+### Offline / Locally
+Install *jsdoc* by typing `npm install jsdoc` inside the node-flarum package folder. After installing *jsdoc* execute
+```jsdoc -t ./node_modules/ink-docstrap/template -c docs.config.json -R README.md -r . -d ./docs```
+in the project root and then open `docs/index.html` in your web browser
+
 
 
 ## Contributing
 
 Whenever this forum is complete [•••], there will be a website here for the official *NodeJS* Flarum forum
 
+---
 
 ## Release History
 
