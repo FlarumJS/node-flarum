@@ -1,4 +1,4 @@
 node_modules
 flarum
+docs
 ./app.js
-./docs
