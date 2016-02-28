@@ -7,8 +7,15 @@ A forum made out of [Flarum](http://flarum.org)'s design forum with NodeJS
 
 ## Installation
 
+
+#### Stable
 ```sh
 npm install node-flarum --save
+```
+
+#### Latest Release
+```sh
+npm install git+https://github.com/FlarumJS/node-flarum.git --save
 ```
 
 ## Usage
