@@ -12,9 +12,11 @@ var passportjs = require('./lib/config/passport');
 
 var functions = require('./lib/config/functions');
 
-
-// var flarumFolderDirectory = path.join(__dirname + '/../../flarum'); // production
-var flarumFolderDirectory = path.join(__dirname + '/flarum'); // development
+if (process.env.NODE_ENV == 'development') {
+	var flarumFolderDirectory = path.join(__dirname + '/flarum'); // development
+} else {
+	var flarumFolderDirectory = path.join(__dirname + '/../../flarum'); // production
+}
 
 var connectMongo = functions.connectMongo;
 var throwError = functions.throwError;
