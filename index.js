@@ -13,8 +13,8 @@ var passportjs = require('./lib/config/passport');
 var functions = require('./lib/config/functions');
 
 
-// var flarumFolderDirectory = path.join(__dirname + '/../../flarum'); // production
-var flarumFolderDirectory = path.join(__dirname + '/flarum'); // development
+var flarumFolderDirectory = path.join(__dirname + '/../../flarum'); // production
+// var flarumFolderDirectory = path.join(__dirname + '/flarum'); // development
 
 var connectMongo = functions.connectMongo;
 var throwError = functions.throwError;
