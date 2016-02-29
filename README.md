@@ -83,4 +83,4 @@ Whenever this forum is complete [•••], there will be a website here for th
 
 * v0.0.1-beta.1 - NPM Package Information
 * v0.0.1.beta.2 - Added Configuration Tweaks, fixed links and mongodb problems ([Full Release Information](https://github.com/FlarumJS/node-flarum/releases/tag/v0.0.1-beta.2))
-* v0.0.1-beta.3 - Added Sign Up & Log In Options ([Full Release Information](https://github.com/FlarumJS/node-flarum/releases/tag/v0.0.1-beta.3))
+* v0.0.1-beta.3 - Added Sign Up & Log In Options; Added inline documentation for the package ([Full Release Information](https://github.com/FlarumJS/node-flarum/releases/tag/v0.0.1-beta.3))
