@@ -1,0 +1,32 @@
+{
+	"tags": {
+		"allowUnknownTags": true,
+		"dictionaries": ["jsdoc","closure"]
+	},
+	"source": {
+		"exclude":["node_modules"],
+		"includePattern": ".+\\.js(doc)?$",
+		"excludePattern": "(^|\\/|\\\\)_"
+	},
+	"plugins": [],
+	"templates": {
+		"cleverLinks": false,
+		"monospaceLinks": false
+	},
+	"templates": {
+		"systemName"            : "FlarumJS/Node-Flarum Inline Documentation",
+		"footer"                : "",
+		"copyright"             : "© 2016 FlarumJS",
+		"includeDate"           : true,
+		"navType"               : "inline",
+		"theme"                 : "cosmo",
+		"linenums"              : true,
+		"collapseSymbols"       : true,
+		"inverseNav"            : true,
+		"outputSourceFiles"     : true,
+		"outputSourcePath"      : false,
+		"dateFormat"            : "dddd, MMMM Do YYYY, h:mm:ss a",
+		"syntaxTheme"           : "default",
+		"sort"                  : "since"
+	}
+}
