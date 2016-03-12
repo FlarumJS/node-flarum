@@ -1,0 +1,34 @@
+{
+  "name": "node-flarum",
+  "description": "The Flarum forum with NodeJS",
+  "main": "index.js",
+  "authors": [
+    "David Sevilla Martín (dsevilla192@icloud.com)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "flarum",
+    "nodejs",
+    "node",
+    "mongo",
+    "mongodb",
+    "forum"
+  ],
+  "homepage": "http://node-flarum.tk",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular-moment": "^0.10.3",
+    "moment": "^2.12.0",
+    "toastr": "^2.1.2",
+    "angular": "^1.5.0",
+    "simplemde": "^1.10.0",
+    "sweetalert": "^1.1.3"
+  }
+}

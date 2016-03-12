@@ -4,11 +4,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{title}}</title>
-	<link rel="stylesheet" href="{{forumPath}}assets/css/forum-06529992.css" />
 	{{!-- <link rel="stylesheet" rel="/bower_components/angular-toastr/dist/angular-toastr.min.css" /> --}}
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
-	<link rel="stylesheet" href="http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
+	<link rel="stylesheet" href="{{forumPath}}bower_components/toastr/toastr.min.css" />
+	<link rel="stylesheet" href="{{forumPath}}bower_components/sweetalert/dist/sweetalert.css" />
+	<link rel="stylesheet" href="{{forumPath}}bower_components/simplemde/dist/simplemde.min.css" />
+	<link rel="stylesheet" href="{{forumPath}}assets/css/forum-06529992.css" />
 	<link rel="stylesheet" href="{{forumPath}}assets/css/style.css" />
 	<link rel="stylesheet" href="{{forumPath}}assets/css/prismjs.css" />
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -28,7 +28,7 @@
 		}
 	</style>
 </head>
-<body class="modal-open">
+<body ng-cloak>
 	<div id="modalOverlay" ng-class="modalOverlayClass"></div>
 	<div id="modal" class="loginModals">
 		<div class="ModalManager modal LogInModal{{#if showLoginModal}} show{{/if}}" {{#if showLoginModal}}ng-init="loginModalClass = 'show'; modalOverlayClass = 'work'" {{/if}}style="display: block; padding-left: 0px;" ng-class="loginModalClass">
@@ -59,7 +59,15 @@
 						</div>
 						<div class="Modal-body">
 							<div class="LogInButtons">
-								<button class="Button LogInButton--facebook LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-facebook-official Button-icon"></i><span class="Button-label">Log In with Facebook</span></button><button class="Button LogInButton--twitter LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-twitter Button-icon"></i><span class="Button-label">Log In with Twitter</span></button><button class="Button LogInButton--github LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-github Button-icon"></i><span class="Button-label">Log In with GitHub</span></button>
+								<button class="Button LogInButton--facebook LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-facebook-official Button-icon"></i><span class="Button-label">Log In with Facebook</span>
+								</button>
+								<button class="Button LogInButton--twitter LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-twitter Button-icon"></i><span class="Button-label">Log In with Twitter</span>
+								</button>
+								<button class="Button LogInButton--github LogInButton hasIcon" type="button">
+									<a href="{{forumPath}}auth/github">
+										<i class="icon fa fa-fw fa-github Button-icon"></i><span class="Button-label">Log In with GitHub</span>
+									</a>
+								</button>
 							</div>
 							<div class="Form Form--centered">
 								<input type="hidden" name="client" value="true">
@@ -103,7 +111,15 @@
 						<div class="Modal-alert"></div>
 						<div class="Modal-body">
 							<div class="LogInButtons">
-								<button class="Button LogInButton--facebook LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-facebook-official Button-icon"></i><span class="Button-label">Log In with Facebook</span></button><button class="Button LogInButton--twitter LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-twitter Button-icon"></i><span class="Button-label">Log In with Twitter</span></button><button class="Button LogInButton--github LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-github Button-icon"></i><span class="Button-label">Log In with GitHub</span></button>
+								<button class="Button LogInButton--facebook LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-facebook-official Button-icon"></i><span class="Button-label">Log In with Facebook</span>
+								</button>
+								<button class="Button LogInButton--twitter LogInButton hasIcon" type="button"><i class="icon fa fa-fw fa-twitter Button-icon"></i><span class="Button-label">Log In with Twitter</span>
+								</button>
+								<button class="Button LogInButton--github LogInButton hasIcon" type="button">
+									<a href="{{forumPath}}auth/github">
+										<i class="icon fa fa-fw fa-github Button-icon"></i><span class="Button-label">Log In with
+									</a>GitHub</span>
+								</button>
 							</div>
 							<div class="Form Form--centered">
 								<div class="Form-group">
@@ -135,21 +151,122 @@
 			</div>
 		</div>
 	</div>
-	<div id="alerts"></div>
+	<div id="alerts">
+		<div class="AlertManager">
+			{{!-- <div class="AlertManager-alert">
+				<div class="Alert Alert--error ">
+					<span class="Alert-body">Oops! Something went wrong. Please reload the page and try again.</span>
+					<ul class="Alert-controls">
+						<li>
+							<button class="Button Button--link" type="button"><span class="Button-label">Debug</span>
+							</button>
+						</li>
+						<li>
+							<button class="Button Button--link Button--icon Alert-dismiss hasIcon" type="button"><i class="icon fa fa-fw fa-times Button-icon"></i>
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div> --}}
+		</div>
+	</div>
 
-	{{{body}}}
+	<div id="app" class="App affix App--index" style="min-height: 468px;">
+		{{!-- <div class="Navigation ButtonGroup App-backControl">
+			<button class="Button Button--icon Navigation-drawer hasIcon" type="button"><i class="icon fa fa-fw fa-reorder Button-icon"></i></button>
+		</div> --}}
+		<div id="app-navigation" class="App-navigation">
+			<div class="Navigation ButtonGroup App-backControl">
+				<button class="Button Button--icon Navigation-drawer hasIcon" type="button">
+					<i class="icon fa fa-fw fa-reorder Button-icon"></i>
+				</button>
+			</div>
+		</div>
+		<div class="App-drawer">
+
+			<header class="App-header">
+				<div class="Header-navigation"></div>
+				<div class="container">
+					<h1 class="Header-title">
+						<a href="{{forumPath}}" class="home-link">{{forum.title}}</a>
+					</h1>
+					<div class="Header-primary"></div>
+					<div class="Header-secondary" id="header-secondary">
+						<ul class="Header-controls">
+							<li class="item-search">
+								<div class="Search">
+									<div class="Search-input">
+										<input class="FormControl" placeholder="Search Forum">
+									</div>
+									<ul class="Dropdown-menu Search-results"></ul>
+								</div>
+							</li>
+							{{#if user}}
+							<li class="session">
+								<div class="ButtonGroup Dropdown dropdown SessionDropdown itemCount4">
+									<button class="Dropdown-toggle Button Button--user Button--flat" data-toggle="dropdown" aria-expanded="false">
+										{{#if user.avatar}}
+										<img class="Avatar" src="{{user.avatar}}">
+										{{else}}
+										<span class="Avatar">[['{{user.username}}' | limitTo : 1 | uppercase]]</span>
+										{{/if}}
+										<span class="Button-label">
+											<span class="username">{{user.username}}</span>
+										</span>
+									</button>
+									{{username}}
+									<ul class="Dropdown-menu dropdown-menu Dropdown-menu--right">
+										<li class="item-profile">
+											<a class=" hasIcon" href="/u/{{user.username}}" type="button"><i class="icon fa fa-fw fa-user Button-icon"></i><span class="Button-label">Profile</span></a>
+										</li>
+										<li class="item-settings">
+											<a class=" hasIcon" href="/settings" type="button"><i class="icon fa fa-fw fa-cog Button-icon"></i><span class="Button-label">Settings</span></a>
+										</li>
+										<li class="Dropdown-separator"></li>
+										<li class="item-logOut">
+
+											<button class=" hasIcon" type="button">
+												<a href="{{forumPath}}logout">
+													<i class="icon fa fa-fw fa-sign-out Button-icon"></i><span class="Button-label">Log Out</span>
+												</a>
+											</button>
+
+										</li>
+									</ul>
+								</div>
+							</li>
+							{{else}}
+							<li class="item-signUp">
+								<button class="Button Button--link" type="button" ng-click="signupModalClass = 'show'; modalOverlayClass = 'work'"><span class="Button-label">Sign Up</span></button>
+							</li>
+							<li class="item-logIn">
+								<button class="Button Button--link" type="button" ng-click="loginModalClass = 'show'; modalOverlayClass = 'work'"><span class="Button-label">Log In</span></button>
+							</li>
+							{{/if}}
+						</ul>
+					</div>
+				</div>
+			</header>
+		</div>
+		<main class="App-content">
+			{{{body}}}
+		</main>
+	</div>
+
 
 	<script src="{{forumPath}}assets/js/forum-8a0805bb.js"></script>
-	<script src="{{forumPath}}assets/angular/angular.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="{{forumPath}}bower_components/angular/angular.min.js"></script>
+	{{!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
+	<script src="{{forumPath}}bower_components/toastr/toastr.min.js"></script>
 	{{!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> --}}
-	<script src="http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+	{{!-- // <script src="http://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script> --}}
+	<script src="{{forumPath}}bower_components/simplemde/dist/simplemde.min.js"></script>
 	<script src="{{forumPath}}assets/js/marked.min.js"></script>
 	<script src="{{forumPath}}assets/js/prism.min.js"></script>
 	<script src="{{forumPath}}assets/angular/app.js"></script>
 	<script src="{{forumPath}}assets/js/script.js"></script>
 	<script>
-		executeAngular('{{forumPath}}'{{#if user}}, {{{user}}}{{/if}});
+		executeAngular('{{forumPath}}'{{#if user}}, '{{user.token}}'{{/if}});
 
 	</script>
 </body>
