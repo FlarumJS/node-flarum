@@ -3,6 +3,11 @@
 	padding: 0;
 }
 
+html, body, .App-content, #content {
+	min-height: 90vh !important;
+	overflow: auto !important;
+}
+
 .toast {
 	z-index: 999999;
 }
@@ -10,6 +15,12 @@
 .DiscussionList--List {
 	list-style-type: none;
 }
+
+.App {
+	padding-bottom: 0;
+}
+
+
 
 @media (min-width: 991px) {
 	.DiscussionList--Item .DiscussionListItem-info .item-tags {
@@ -82,31 +93,47 @@ pre[class^=" language-"] {
 
 /* EDITOR */
 
+
 .App-composer * {
-	-webkit-transition: height .25s ease-in-out, opacity .25s ease-in-out;
-	-moz-transition: height .25s ease-in-out, opacity .25s ease-in-out;
-	-ms-transition: height .25s ease-in-out, opacity .25s ease-in-out;
-	-o-transition: height .25s ease-in-out, opacity .25s ease-in-out;
-	transition: height .25s ease-in-out, opacity .25s ease-in-out;
+	-webkit-transition: height .5s ease-in-out, opacity .5s ease-in-out;
+	-moz-transition: height .5s ease-in-out, opacity .5s ease-in-out;
+	-ms-transition: height .5s ease-in-out, opacity .5s ease-in-out;
+	-o-transition: height .5s ease-in-out, opacity .5s ease-in-out;
+	transition: height .5s ease-in-out, opacity .5s ease-in-out;
 }
 
-.App-composer #composer {
-	position: fixed;
-	bottom: 0;
+.App-composer {
+	/*position: fixed;*/
+	bottom: -2px;
+	/*margin: 0 !important;*/
 	width: 75%;
-	left: 12.5%;
-	z-index: 99999;
-	height: 0 !important;
 	overflow: hidden;
-	opacity: 0;
+	margin-left: 200px;
 	-webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
 }
 
+.App-composer #composer {
+	width: 100% !important;
+	height: 0 !important;
+	opacity: 0;
+	display: none;
+	z-index: 99999;
+	overflow: hidden;
+}
+
+
+.App-composer .container {
+	/*-webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);*/
+}
+
 .App-composer #composer.show {
 	height: auto !important;
 	opacity: 1;
+	display: block;
 }
 
 .App-composer #composer .error {
@@ -117,10 +144,11 @@ pre[class^=" language-"] {
 .App-composer #composer .visible {
 	overflow-x: hidden;
 	overflow-y: scroll;
+	margin: 0 !important;
 }
 
 .App-composer #composer .visible .ComposerBody .ComposerBody-editor .CodeMirror {
-	padding-top: 40px !important;
+	/*padding-top: 40px !important;*/
 }
 
 .App-composer #composer .visible.minimized {
@@ -129,6 +157,7 @@ pre[class^=" language-"] {
 }
 
 .App-composer #composer .visible::-webkit-scrollbar {
+	z-index: 9999999;
 	width: 0.5em;
 }
 

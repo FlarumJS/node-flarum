@@ -43,13 +43,16 @@
 					<i class="icon fa fa-fw fa-check "></i>
 				</a>
 				<div class="DiscussionListItem-content Slidable-content read">
-					<a href="{{forumPath}}u/[[discussion.start_username]]" class="DiscussionListItem-author" title="" data-original-title="[[discussion.start_username]] started [[discussion.start_time]]"><span class="Avatar " style="background: rgb(175, 160, 229);">[[discussion.start_username | limitTo : 1 | uppercase]]</span></a>
+					<a href="{{forumPath}}u/[[discussion.start_user_id.username]]" class="DiscussionListItem-author" title="[[discussion.start_user_id.username]]" data-original-title="[[discussion.start_user_id.username]] started [[discussion.start_time]]">
+						<span class="Avatar " style="background: rgb(175, 160, 229);" ng-hide="discussion.start_user_id.avatar">[[discussion.start_user_id.username | limitTo : 1 | uppercase]]</span>
+						<img ng-src="[[discussion.start_user_id.avatar]]" ng-show="discussion.start_user_id.avatar" alt="[[discussion.start_user_id.username]]" class="Avatar ">
+					</a>
 					<ul class="DiscussionListItem-badges badges"></ul>
 					<a href="{{forumPath}}d/[[discussion.slug]]" class="DiscussionListItem-main">
 						<h3 class="DiscussionListItem-title">[[discussion.title]]</h3>
 						<ul class="DiscussionListItem-info">
 							<li class="item-tags">
-							{{!-- [[discussion.tags]] --}}
+								{{!-- [[discussion.tags]] --}}
 								<span class="TagsLabel ">
 									<span class="TagLabel  colored" ng-repeat="tag in discussion.tags" style="color: [[tag.color]]; background-color: [[tag.color]]">
 										<span class="TagLabel-text">[[tag.label]]</span>
@@ -59,16 +62,16 @@
 							<li class="item-terminalPost">
 								<span ng-hide="discussion.replyCount > 0">
 									<span class="username">
-										[[discussion.start_username]]
+										[[discussion.start_user_id.username]]
 									</span> started
-									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.start_time]]" data-humantime="true">[[discussion.start_time]]</time>
+									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.start_time]]" am-time-ago="discussion.start_time" data-humantime="true">[[discussion.start_time]]</time>
 								</span>
 								<span ng-show="discussion.replyCount > 0">
 									<i class="icon fa fa-fw fa-reply "></i>
 									<span class="username">
 										[[discussion.last_username]]
 									</span> replied
-									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.last_time]]" data-humantime="true">[[discussion.last_time]]</time>
+									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.last_time]]" am-time-ago="discussion.last_time" data-humantime="true">[[discussion.last_time]]</time>
 								</span>
 							</li>
 						</ul>
