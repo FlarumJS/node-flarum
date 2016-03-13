@@ -46,7 +46,7 @@ passportjs((app.path() != '//' && app.path() || '/'), passport);
 fs.readFile(flarumFolderDirectory + '/config.json', 'utf8', function (err, data) {
 
 	if (!err && !data) {
-		fs.writeFile(confirFileDirname, '{}', function (err2) {
+		fs.writeFile(flarumFolderDirectory, '{}', function (err2) {
 			if (err2) return throwError('Error while trying to create config.json file', err2);
 			console.log('[FLARUM] Config File Set Up!');
 
@@ -58,7 +58,7 @@ fs.readFile(flarumFolderDirectory + '/config.json', 'utf8', function (err, data)
 			app.use('/', routes);
 		});
 	}
-	if (err == 'Error: ENOENT, open \'flarum/config.json\'') {
+	if (err == 'Error: ENOENT, open \'flarum/config.json\'' || err == 'Error: ENOENT: no such file or directory, open \'/' + flarumFolderDirectory + '/config.json\']') {
 		var error =  new Error('Config File Not Found');
 		console.log('[FLARUM] ' + err);
 		fs.mkdir(flarumFolderDirectory, function (err1) {
@@ -79,7 +79,24 @@ fs.readFile(flarumFolderDirectory + '/config.json', 'utf8', function (err, data)
 			});
 		});
 	} else if (err) {
-		debugError('Error while trying to open the config.json file in flarum/', err);
+		console.log('[FLARUMJS] Error while trying to open the config.json file in flarum/', err);
+		fs.mkdir(flarumFolderDirectory, function (err1) {
+			if (err1) return throwError('Error while trying to create flarum/ directory', err1);
+			fs.writeFile('flarum/config.json', '{}', function (err2) {
+				if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
+					var error =  new Error('Config File Not Found');
+					return console.log('[FLARUM] ' + err);
+				} else if (err2) throw err2;
+				console.log('[FLARUM] Config File Written!');
+
+				config = require(flarumFolderDirectory + '/config.json');
+
+				if (config.mongodb) connectMongo(config.mongodb);
+
+				setUpRoutes();
+				app.use('/', routes);
+			});
+		});
 	} else if (data) {
 
 		config = require(flarumFolderDirectory + '/config.json');
