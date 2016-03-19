@@ -39,40 +39,40 @@ describe('Functions', function () {
 	});
 });
 
-describe('SignUp', function () {
-	var newUserInfo = {
-		username: 'username',
-		email: 'email@domain.com',
-		password: 'password',
-		passwordCheck: 'password'
-	}
-	it('should return success when signing up with non-repeating info', function (done) {
+// describe('SignUp', function () {
+// 	var newUserInfo = {
+// 		username: 'username',
+// 		email: 'email@domain.com',
+// 		password: 'password',
+// 		passwordCheck: 'password'
+// 	}
+// 	it('should return success when signing up with non-repeating info', function (done) {
 
-		app.post('/api/signup');
+// 		app.post('/api/signup');
 
-		// request(app)
-		// .post('/api/signup')
-		// .type('form')
-		// .send(newUserInfo)
-		// .field('username', 'username')
-		// .field('email', 'email@domain.com')
-		// .field('password', 'password')
-		// .field('passwordCheck', 'password')
-		// .end(function (err, res) {
-		// 	if (err) throw err;
+// 		// request(app)
+// 		// .post('/api/signup')
+// 		// .type('form')
+// 		// .send(newUserInfo)
+// 		// .field('username', 'username')
+// 		// .field('email', 'email@domain.com')
+// 		// .field('password', 'password')
+// 		// .field('passwordCheck', 'password')
+// 		// .end(function (err, res) {
+// 		// 	if (err) throw err;
 
-		// 	console.log(res.body);
+// 		// 	console.log(res.body);
 
-		// 	res.body.should.be.an('object');
-		// 	assert.equal(res.body.success, true);
-		// 	res.body.errors.should.equal([ ]);
-		// 	res.status.should.equal(200);
+// 		// 	res.body.should.be.an('object');
+// 		// 	assert.equal(res.body.success, true);
+// 		// 	res.body.errors.should.equal([ ]);
+// 		// 	res.status.should.equal(200);
 
-		// 	done();
+// 		// 	done();
 
-		// })
-	})
-})
+// 		// })
+// 	})
+// })
 
 describe('Discussions', function () {
 	it('should return discussion list at /api/discussionList', function (done) {
@@ -87,8 +87,8 @@ describe('Discussions', function () {
 			done();
 		})
 	});
-	it('should return success when creating a new discussion', function (done) {
-		request(app)
-		.post('/api/discussion/create')
-	})
+	// it('should return success when creating a new discussion', function (done) {
+	// 	request(app)
+	// 	.post('/api/discussion/create')
+	// })
 })
