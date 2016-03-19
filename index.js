@@ -2,7 +2,6 @@ var express = require('express');
 var session = require('express-session');
 var hbs = require('hbs');
 var path = require('path');
-var debugError = require('debug')('flarum:error');
 var fs = require('fs');
 var config, routes;
 
@@ -12,14 +11,20 @@ var passportjs = require('./lib/config/passport');
 
 var functions = require('./lib/config/functions');
 
-if (process.env.NODE_ENV == 'development') {
-	var flarumFolderDirectory = path.join(__dirname + '/flarum'); // development
+var flarumFolderDirectory;
+
+if (process.env.NODE_ENV === 'development') {
+	// DEVELOPMENT: Set FlarumFolderDirectory to same directory w/o node_modules
+	flarumFolderDirectory = path.join(__dirname, '/flarum');
 } else {
-	var flarumFolderDirectory = path.join(__dirname + '/../../flarum'); // production
+	// PRODUCTION: Set FlarumFolderDirectory up because we are in node_modules
+	flarumFolderDirectory = path.join(__dirname, '/../../flarum');
 }
 
 var connectMongo = functions.connectMongo;
 var throwError = functions.throwError;
+var createFlarumFolder = functions.createFlarumFolder;
+var createConfigFile = functions.createConfigFile;
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -34,67 +39,47 @@ app.set('port', process.env.PORT || 8080);
 hbs.registerPartials(__dirname + '/lib/views/partials');
 
 
-app.use(session({ secret: 'nyan keyboard' }));
+app.use(session({ secret: 'nyan keyboard' })); 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(express.static(path.join(__dirname, '/lib/public')));
 
-passportjs((app.path() != '//' && app.path() || '/'), passport);
+passportjs((app.path() !== '//' && app.path() || '/'), passport);
 
 
 fs.readFile(flarumFolderDirectory + '/config.json', 'utf8', function (err, data) {
 
 	if (!err && !data) {
-		fs.writeFile(flarumFolderDirectory, '{}', function (err2) {
-			if (err2) return throwError('Error while trying to create config.json file', err2);
+
+		createConfigFile(flarumFolderDirectory, function (err1) {
+			if (err2) return false;
 			console.log('[FLARUM] Config File Set Up!');
 
-			config = require(flarumFolderDirectory + '/config.json');
+			config = require(flarumFolderDirectory + './config.json');
 
 			if (config.mongodb) connectMongo(config.mongodb);
 
 			setUpRoutes();
-			app.use('/', routes);
-		});
-	}
-	if (err == 'Error: ENOENT, open \'flarum/config.json\'' || err == 'Error: ENOENT: no such file or directory, open \'/' + flarumFolderDirectory + '/config.json\']') {
-		var error =  new Error('Config File Not Found');
-		console.log('[FLARUM] ' + err);
-		fs.mkdir(flarumFolderDirectory, function (err1) {
-			if (err1) return throwError('Error while trying to create flarum/ directory', err1);
-			fs.writeFile('flarum/config.json', '{}', function (err2) {
-				if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
-					var error =  new Error('Config File Not Found');
-					return console.log('[FLARUM] ' + err);
-				} else if (err2) throw err2;
-				console.log('[FLARUM] Config File Written!');
-
-				config = require(flarumFolderDirectory + '/config.json');
-
-				if (config.mongodb) connectMongo(config.mongodb);
-
-				setUpRoutes();
-				app.use('/', routes);
-			});
+			// app.use('/', routes);
 		});
 	} else if (err) {
-		console.log('[FLARUMJS] Error while trying to open the config.json file in flarum/', err);
-		fs.mkdir(flarumFolderDirectory, function (err1) {
-			if (err1) return throwError('Error while trying to create flarum/ directory', err1);
-			fs.writeFile('flarum/config.json', '{}', function (err2) {
-				if (err2 == 'Error: ENOENT, open \'flarum/config.json\'') {
-					var error =  new Error('Config File Not Found');
-					return console.log('[FLARUM] ' + err);
-				} else if (err2) throw err2;
-				console.log('[FLARUM] Config File Written!');
+		console.log('[FLARUM] Config File Not Found Or Could Not Be Written');
 
-				config = require(flarumFolderDirectory + '/config.json');
+		createFlarumFolder(flarumFolderDirectory, function (err1) {
+			if (err1) return false;
+			console.log('[FLARUM] Flarum/ Folder Created!');
+
+			createConfigFile(flarumFolderDirectory, function (err2) {
+				if (err2) return false;
+				console.log('[FLARUM] Config File Set Up!');
+
+				config = require(path.join(flarumFolderDirectory, 'config.json'));
 
 				if (config.mongodb) connectMongo(config.mongodb);
 
 				setUpRoutes();
-				app.use('/', routes);
+				// app.use('/', routes);
 			});
 		});
 	} else if (data) {
