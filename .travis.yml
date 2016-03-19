@@ -3,6 +3,8 @@ install:
   - npm install mocha
   - npm install chai
   - npm install supertest
+  - mkdir flarum
+  - touch flarum/config.json
 
 script: make test
 
