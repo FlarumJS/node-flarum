@@ -1,9 +1,8 @@
 install:
+  - npm install
   - npm install mocha
   - npm install chai
-  - npm install mongoose
-  - npm install assert
-  - npm install debug
+  - npm install supertest
 
 script: make test
 
