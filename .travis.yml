@@ -6,7 +6,7 @@ install:
   - mkdir flarum
   - touch flarum/config.json
 
-script: make test
+script: NODE_ENV=development make test
 
 services:
   - mongodb
