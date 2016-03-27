@@ -26,8 +26,3 @@ dependencies:
   override:
     - npm install # install from a different package manager
     - npm install --dev # use a custom version of bundler
-
-
-  override:
-    - bundle install: # note ':' here
-        timeout: 180 # fail if command has no output for 3 minutes
