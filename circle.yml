@@ -26,3 +26,7 @@ dependencies:
   override:
     - npm install # install from a different package manager
     - npm install --dev # use a custom version of bundler
+
+  post:
+    - mkdir flarum
+    - echo \"{}\" >> flarum/config.json

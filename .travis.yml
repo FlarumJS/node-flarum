@@ -3,6 +3,8 @@ install:
   - npm install mocha
   - npm install chai
   - npm install supertest
+  - mkdir flarum
+  - echo \"{}\" >> flarum/config.json
 
 script: NODE_ENV=development make test
 
