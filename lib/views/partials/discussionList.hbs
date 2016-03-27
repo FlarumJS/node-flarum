@@ -7,6 +7,7 @@
 	<ul ng-hide="discussionList.noDiscussions" class="DiscussionList--List">
 		<li ng-repeat="discussion in discussionList.discussions" data-id="[[discussion.id]]" ng-cloak class="DiscussionList--Item">
 			<div class="DiscussionListItem">
+				{{#if user}}
 				<div class="ButtonGroup Dropdown dropdown DiscussionListItem-controls itemCount8">
 					<button class="Dropdown-toggle Button Button--icon Button--flat Slidable-underneath Slidable-underneath--right" data-toggle="dropdown"><i class="icon fa fa-fw fa-ellipsis-v Button-icon"></i><span class="Button-label"></span><i class="icon fa fa-fw fa-caret-down Button-caret"></i>
 					</button>
@@ -16,7 +17,7 @@
 							</button>
 						</li>
 						<li class="Dropdown-separator"></li>
-						<li class="item-rename">
+						<li class="item-rename" ng-click="discussionList.rename(discussion.start_post_id)" ng-show="'{{user.username}}' == '[[discussion.start_user_id.username]]'">
 							<button class=" hasIcon" type="button"><i class="icon fa fa-fw fa-pencil Button-icon"></i><span class="Button-label">Rename</span>
 							</button>
 						</li>
@@ -39,6 +40,7 @@
 						</li>
 					</ul>
 				</div>
+				{{/if}}
 				<a class="Slidable-underneath Slidable-underneath--left Slidable-underneath--elastic disabled">
 					<i class="icon fa fa-fw fa-check "></i>
 				</a>
@@ -48,7 +50,7 @@
 						<img ng-src="[[discussion.start_user_id.avatar]]" ng-show="discussion.start_user_id.avatar" alt="[[discussion.start_user_id.username]]" class="Avatar ">
 					</a>
 					<ul class="DiscussionListItem-badges badges"></ul>
-					<a href="{{forumPath}}d/[[discussion.slug]]" class="DiscussionListItem-main">
+					<a href="{{forumPath}}d/[[discussion.start_post_id]]-[[discussion.slug]]" class="DiscussionListItem-main">
 						<h3 class="DiscussionListItem-title">[[discussion.title]]</h3>
 						<ul class="DiscussionListItem-info">
 							<li class="item-tags">
@@ -69,7 +71,7 @@
 								<span ng-show="discussion.replyCount > 0">
 									<i class="icon fa fa-fw fa-reply "></i>
 									<span class="username">
-										[[discussion.last_username]]
+										[[discussion.last_user_id.username]]
 									</span> replied
 									<time pubdate="true" datetime="2016-01-17T18:45:07-05:00" title="[[discussion.last_time]]" am-time-ago="discussion.last_time" data-humantime="true">[[discussion.last_time]]</time>
 								</span>
