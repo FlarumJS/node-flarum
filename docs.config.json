@@ -4,7 +4,7 @@
 		"dictionaries": ["jsdoc","closure"]
 	},
 	"source": {
-		"exclude":["node_modules"],
+		"exclude":["node_modules", "bower_components", "lib/public/bower_components", "docs"],
 		"includePattern": ".+\\.js(doc)?$",
 		"excludePattern": "(^|\\/|\\\\)_"
 	},
