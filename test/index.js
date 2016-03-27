@@ -1,94 +1,102 @@
 var should = require('chai').should(),
-assert = require('chai').assert,
-		// assert = require('assert'),
-		express = require('express'),
-		request = require('supertest'),
-		passport = require('passport'),
-		routes = require('../lib/routes'),
-		index = require('../index'),
-		passportConfig = require('../lib/config/passport');
+assert = require('chai').assert;
+var express = require('express');
+var request = require('supertest');
+var passport = require('passport');
+var routes = require('../lib/routes');
+// var models = require('../models/index');
+var index = require('../index');
+var passportConfig = require('../lib/config/passport');
 
-		var functions = require('../lib/config/functions');
-		var connectMongo = functions.connectMongo;
-		var falseDiscussionList = functions.getFalseDiscussionList;
+var functions = require('../lib/config/functions');
+var connectMongo = functions.connectMongo;
+var falseDiscussionList = functions.getFalseDiscussionList;
 
 
-		var app = express();
-		app.use(index);
-
-// describe('Routing', function () {
-
-//   var app = express();
-
-//   app.use(index);
-
-//   // routes(app, passportConfig('/', passport));
-
-//   before(function (done) {
-//     connectMongo({ host: '127.0.0.1:27017', database: 'node-flarum' }, function (err, mongo) { if (err) throw err; if (!mongo) throw new Error('Could not find mongo instance'); done(); });
-//     done();
-//   });
-// });
+var app = express();
+app.use(index);
 
 describe('Functions', function () {
-	describe('#connectMongo', function () {
-		this.timeout(10000);
-		it('connect to flarumjs-test database', function (done) {
-			connectMongo({ host: '127.0.0.1:27017', database: 'node-flarum' }, function (err, mongo) { if (err) throw err; if (!mongo) throw new Error('Could not find mongo instance'); done(); });
-		});
-	});
+  this.timeout(5000);
+
+  it('#connectMongo - connect to flarumjs-test database', function (done) {
+    this.timeout(10000);
+    connectMongo({
+      host: '127.0.0.1:27017',
+      database: 'node-flarum'
+    }, function (err, mongo) {
+      should.not.exist(err);
+      should.exist(mongo);
+      done();
+    });
+  });
+
+  it('#createFlarumFolder - should not return error', function (done) {
+    functions.createFlarumFolder('./test/flarum', function (err) {
+      should.not.exist(err);
+      done();
+    });
+  });
+
+  it('#createConfigFile - should not return error', function (done) {
+    functions.createConfigFile('./test/flarum', function (err) {
+      should.not.exist(err);
+      done();
+    })
+  });
 });
 
-// describe('SignUp', function () {
-// 	var newUserInfo = {
-// 		username: 'username',
-// 		email: 'email@domain.com',
-// 		password: 'password',
-// 		passwordCheck: 'password'
-// 	}
-// 	it('should return success when signing up with non-repeating info', function (done) {
+// describe('Install', function () {
 
-// 		app.post('/api/signup');
+//   it('should return no data posted when no data is posted', function (done) {
+//     request(app)
+//     .post('/flarum/install')
+//     .end(function (err, res) {
+//       if (err) throw err;
 
-// 		// request(app)
-// 		// .post('/api/signup')
-// 		// .type('form')
-// 		// .send(newUserInfo)
-// 		// .field('username', 'username')
-// 		// .field('email', 'email@domain.com')
-// 		// .field('password', 'password')
-// 		// .field('passwordCheck', 'password')
-// 		// .end(function (err, res) {
-// 		// 	if (err) throw err;
+//       if (res.status == 403) {
+//         throw new Error(JSON.stringify(res.body, null, 4));
+//       } else {
+//         res.status.should.equal(403);
+//         // res.body.should.be.a('string');
+//         res.body.should.equal('No data was sent!');
+//       }
 
-// 		// 	console.log(res.body);
+//       done();
+//     });
+//   });
 
-// 		// 	res.body.should.be.an('object');
-// 		// 	assert.equal(res.body.success, true);
-// 		// 	res.body.errors.should.equal([ ]);
-// 		// 	res.status.should.equal(200);
+//   it('should return \"Forum Title can\'t be empty\" when no title is sent', function (done) {
+//     request(app)
+//     .post('/flarum/install')
+//     .field('title', '')
+//     .end(function (err, res) {
+//       if (err) throw err;
 
-// 		// 	done();
+//       res.status.should.equal(403);
+//       // res.body.should.be.a('string');
+//       res.body.should.equal('Forum Title can\'t be empty');
 
-// 		// })
-// 	})
-// })
+//       done();
+//     })
+//   })
+// });
 
-describe('Discussions', function () {
-	it('should return discussion list at /api/discussionList', function (done) {
-		request(app)
-		.post('/api/discussionList')
-		.end(function (err, res) {
-			if (err) throw err;
+// describe('Discussions', function () {
+//   it('should return discussion list at /api/discussions', function (done) {
+//     request(app)
+//     .get('/api/discussions')
+//     .end(function (err, res) {
+//       if (err) throw err;
 
-			res.status.should.equal(200);
-			res.body.should.be.an('object');
+//       res.status.should.equal(200);
+//       res.body.should.be.an('object');
 
-			done();
-		})
-	});
-	// it('should return success when creating a new discussion', function (done) {
-	// 	request(app)
-	// 	.post('/api/discussion/create')
-	// })
-})
+//       done();
+//     })
+//   });
+//   // it('should return success when creating a new discussion', function (done) {
+//   // 	request(app)
+//   // 	.post('/api/discussion/create')
+//   // })
+// });
