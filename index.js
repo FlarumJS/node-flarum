@@ -8,6 +8,10 @@ var routes;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
+
+var helmet = require('helmet');
+var toobusy = require('toobusy-js');
+
 var passportjs = require('./lib/config/passport');
 
 var functions = require('./lib/config/functions');
@@ -45,6 +49,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(express.static(path.join(__dirname, '/lib/public')));
+
+app.use(helmet());
+toobusy.maxLag(500);
+app.use(function (req, res, next) {
+  if (toobusy()) {
+    res.status(429).json({ errors: ['The server is busy. Please try again shortly']}).end();
+  }
+  next();
+});
 
 passportjs((app.path() !== '//' && app.path() || '/'), passport);
 
@@ -92,10 +105,7 @@ fs.readFile(flarumFolderDirectory + '/config.json', 'utf8', function (err, data)
 
     if (config.mongodb) connectMongo(config.mongodb);
   }
-})
-
-
-
+});
 
 db.on('error', function (err) {
   if (err == 'MongoError: connect ECONNREFUSED') {
@@ -107,8 +117,12 @@ db.on('error', function (err) {
 
 function setUpRoutes () {
   routes = require('./lib/routes');
-  // routes.setDependencies(passport);
-  // routes.app.set('views', path.join(__dirname, 'lib/views'));
-  // routes.app.set('view engine', 'hbs');
   routes(app, passport);
 }
+
+
+process.on('SIGINT', function() {
+  // calling .shutdown allows your process to exit normally
+  toobusy.shutdown();
+  process.exit();
+});
