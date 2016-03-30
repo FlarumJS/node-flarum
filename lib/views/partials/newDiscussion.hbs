@@ -19,7 +19,7 @@
 		<div class="Composer-content" ng-click="IndexSideNav.hideNewDiscussion = false; IndexSideNav.composerDivClass = ' '">
 			<div class="ComposerBody">
 				<form ng-submit="IndexSideNav.postNewDiscussion()" novalidate="true" role="form">
-					<span class="Avatar ComposerBody-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">[[IndexSideNav.username | limitTo : 1 | uppercase]]</span>
+					<span class="Avatar ComposerBody-avatar" style="background-color: rgb(175, 160, 229); background-position: initial initial; background-repeat: initial initial;">[['{{user.username}}' | limitTo : 1 | uppercase]]</span>
 					<div class="ComposerBody-content">
 						<ul class="ComposerBody-header">
 							<li class="item-tags">
@@ -40,7 +40,9 @@
 									<li class="item-submit">
 										<button class="Button Button--primary hasIcon" type="submit">
 											<i class="icon fa fa-fw fa-check Button-icon"></i>
-											<span class="Button-label">Post Discussion</span>
+											<span class="Button-label">
+											Post Discussion
+											</span>
 										</button>
 									</li>
 								</ul>

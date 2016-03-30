@@ -4,7 +4,7 @@ install:
   - npm install chai
   - npm install supertest
   - mkdir flarum
-  - touch flarum/config.json
+  - echo \"{}\" >> flarum/config.json
 
 script: NODE_ENV=development make test
 

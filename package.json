@@ -4,7 +4,8 @@
   "description": "The Flarum forum with NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "generate-docs": "jsdoc -t ./node_modules/ink-docstrap/template -c docs.config.json -R README.md -r . -d ./docs && exit 0"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,7 @@
   "homepage": "https://github.com/FlarumJS/node-flarum#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "bluebird": "3.3.3",
+    "bluebird": "3.3.4",
     "body-parser": "1.15.0",
     "connect-flash": "0.1.1",
     "cookie-parser": "1.4.1",
@@ -40,21 +41,24 @@
     "express": "4.13.4",
     "express-session": "1.13.0",
     "hbs": "4.0.0",
+    "helmet": "1.3.0",
     "moment": "2.12.0",
-    "mongoose": "4.4.5",
+    "mongoose": "4.4.10",
     "morgan": "1.7.0",
     "passport": "0.3.2",
     "passport-github": "1.1.0",
     "passport-local": "1.0.0",
-    "rollbar": "0.5.13",
+    "rollbar": "0.5.16",
     "serve-favicon": "2.3.0",
-    "shortid": "2.2.4"
+    "shortid": "2.2.4",
+    "toobusy-js": "0.4.3"
   },
   "devDependencies": {
     "chai": "3.5.0",
     "connect": "3.4.1",
     "connect-hopeful-body-parser": "0.3.0",
-    "jscoverage": "^0.6.0",
+    "jscoverage": "0.6.0",
+    "minami": "^1.1.1",
     "mocha": "2.4.5",
     "supertest": "1.2.0"
   }

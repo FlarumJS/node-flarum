@@ -1,0 +1,32 @@
+machine:
+
+  timezone:
+    America/Los_Angeles # Set the timezone
+
+  # Version of ruby to use
+  node:
+    version:
+      4.1.0
+
+  # Add some environment variables
+  environment:
+    NODE_ENV: development
+
+  services:
+    - mongodb
+
+## Customize checkout
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init # use submodules
+
+## Customize dependencies
+dependencies:
+  override:
+    - npm install # install from a different package manager
+    - npm install --dev # use a custom version of bundler
+
+  post:
+    - mkdir flarum
+    - echo \"{}\" >> flarum/config.json
