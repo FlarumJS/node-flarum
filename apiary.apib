@@ -1,0 +1,84 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# flarumjs
+
+Polls is a simple API allowing consumers to view polls and vote in them.
+
+## Discussions Collection [/questions]
+
+### List All Discussions [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "type": "discussion",
+                "id": 1,
+                attributes: {
+                    "canDelete": false, 
+                    "canHide": false, 
+                    "canLock": false, 
+                    "canRename": false, 
+                    "canReply": false, 
+                    "canSticky": false, 
+                    "canTag": false, 
+                    "commentsCount": 1, 
+                    "isApproved": true, 
+                    "isLocked": false, 
+                    "isSticky": false, 
+                    "lastPostNumber": 1, 
+                    "lastTime": "2016-04-22T23:03:54+00:00", 
+                    "participantsCount": 1, 
+                    "slug": "test-post", 
+                    "startTime": "2015-11-30T09:03:53+00:00", 
+                    "title": "Test post"
+                }
+            }
+        ]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
